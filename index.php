@@ -76,43 +76,12 @@
 
 
 
-		<section class="container mt-5" id="services">
-			<br/><br/>
-			<div class="page-header text-center">
-				<h1 class="heading">Services</h1>
-				<div class="litline mx-auto"></div>
-				<br/>
-			</div>
-			
-			<div class="row">
-				
-				<?php
-				$serv_arr = getDBconn()->query("SELECT * FROM services")->fetchAll();
-				
-				for($i=0;$i<count($serv_arr);$i++)
-				{
-				?>
-				
-				<div class="col-md-4 mt-3 mb-3 sm-1 bord">
-					<div class="text-center">					
-							<img class="thumbnailer img-fluid pt-3" src="../images/services/<?php echo $serv_arr[$i]['ServiceID'];?>.jpg">
-							<div class="caption">
-								<h5 class="text-white pt-2"><?php echo $serv_arr[$i]["ServiceName"];?></h5>
-								<p class="lead"><?php echo $serv_arr[$i]["Description"];?></p>
-							</div>
-					</div>
-				</div>
-				<?php } ?>
-
-			</div>
-			
-		</section>
+		
 
 
 
 
-
-<br/><br/><br/><br/>
+	<br/><br/><br/><br/>
 				<section id="why" class="container">
 					<div class="page-header text-center">
 						<h1 class="heading">Why Work With Us ?</h1>

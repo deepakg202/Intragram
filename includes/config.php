@@ -60,14 +60,16 @@
     }
 
 
-    function printBlog($connection)
-    { ?>
+    function printBlog($connection, $who)
+    { 
+        for($i=0;$i<2;$i++){
+        ?>
 
-        <div class="card text-dark">
+        <div class="card text-dark p-1 m-2">
             <div class="card-header">
                 Header
             </div>
-            <img class="card-img" src="https://via.placeholder.com/10" alt="Card image">
+            <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
             <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -79,6 +81,7 @@
         </div>
     <?php
     }
+}
 
 
 
