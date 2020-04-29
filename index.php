@@ -3,7 +3,7 @@
 	<head>
 		<?php require_once("./includes/config.php");?>
 		<?php require_once("./includes/includers.php"); ?>
-		<title>NuStart</title>
+		<title>Intragram</title>
 	</head>
 	<body>
 		

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>NuStart-LogIn</title>
+		<title>Intragram-LogIn</title>
 		<?php require_once("./includes/config.php");?>
 		<?php require_once("./includes/includers.php"); ?>
 	</head>

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>NuStart-Dashboard</title>
+		<title>Intragram-Dashboard</title>
 		<?php require_once("../includes/config.php");?>
 		<?php require_once("../includes/includers.php"); ?>
 	</head>

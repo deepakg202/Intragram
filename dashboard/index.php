@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>NuStart-Dashboard</title>
+		<title>Intragram-Dashboard</title>
 		<?php require_once("../includes/config.php");?>
 		<?php require_once("../includes/includers.php"); ?>
 	</head>
@@ -24,6 +24,7 @@
 						<div class="profile-pic">
 						<img class="img-fluid rounded bg-white p-2" src="../images/user.png">
 					</div>
+					
 						<div class="profile-detail pt-2">
 							<h2><?php echo $name;?></h2>
 							<h3><?php echo $desig;?></h3>
@@ -42,23 +43,11 @@
 					
 					<div class="col-md-9 container">
 						<!-- OVERVIEW -->
-						<?php 
-						$pend_ord = getDBconn()->exec("SELECT * FROM orders WHERE Status='Pending'");
-						$comp_ord = getDBconn()->exec("SELECT * FROM orders WHERE Status='Completed'");
+						<?php
+						printBlog(getDBconn())
 						?>
-						<div class="d-flex text-center justify-content-center card-group">
-							<div class="card py-2 mx-4 bg-warning text-dark rounded">
-								<h3>Pending Orders</h3>
-								<h5><?php echo $pend_ord; ?></h5>
-							</div>
-							<div class="card py-2 mx-4 bg-warning text-dark rounded">
-								<h3>Completed Orders</h3>
-								<h5><?php echo $comp_ord; ?></h5>
-							</div>
-						</div>
 
-						<div class=""></div>
-							
+						<!--END OF OVERVIEW  -->
 					</div>
 
 				</div>

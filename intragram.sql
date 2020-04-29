@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 28, 2020 at 11:29 AM
+-- Generation Time: Apr 29, 2020 at 07:09 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `intragram`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `BlogID` text NOT NULL,
+  `Caption` text NOT NULL,
+  `Created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Image` text NOT NULL,
+  `UserId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -55,6 +70,12 @@ INSERT INTO `users` (`id`, `Name`, `RollNo`, `Email`, `Designation`, `Branch`, `
 --
 
 --
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -63,6 +84,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
