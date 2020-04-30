@@ -2,7 +2,7 @@
 	<nav class="navbar fixed-top" id="mainhead">
 		<div class="container">
 
-			<a href="#" class="navbar-brand">
+			<a href="index.php" class="navbar-brand">
 				<img src="../images/logo.png" class="img-fluid logo">
 		        <span class="d-none d-md-inline">Intragram</span>
 		    </a>
@@ -54,4 +54,4 @@
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
   });
-  </script>
+</script>

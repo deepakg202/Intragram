@@ -65,18 +65,22 @@
         for($i=0;$i<2;$i++){
         ?>
 
-        <div class="card text-dark p-1 m-2">
-            <div class="card-header">
-                Header
+        <div class="card text-dark p-1 mb-4">
+            <div class="card-header clearfix">
+                <div class="float-left">Posted By :-</div>
+                <div class="float-right">Date</div>
             </div>
             <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
             <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Like</a>
             </div>
-            <div class="card-footer text-muted">
-                2 days ago
+            <div class="card-footer d-flex justify-content-around text-center">
+                <a href="#" class="btn "><i class="fa fa-thumbs-up"></i> Like</a>
+        
+                <a href="#" class="btn"><i class="fa fa-comment"></i> Comment</a>
+                
+                <a href="#" class="btn"><i class="fa fa-share"></i> Share</a>
             </div>
         </div>
     <?php

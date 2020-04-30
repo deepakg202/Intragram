@@ -47,10 +47,12 @@
 					</div>
 					
 					<div class="col-md-9 container">
+					
 						<!-- OVERVIEW -->
 						<?php
 							printBlog(getDBconn(), "all");
 						?>
+					
 
 						<!--END OF OVERVIEW  -->
 					</div>
@@ -63,6 +65,25 @@
 			header('location: ../login.php');
 		}
 		?>
+	
+	<!-- NEW POST BUTTON -->
+		<style>
+			.postBtn {
+				bottom: 40px;
+				right: 40px;
+			}
+			
+			.postBtn:hover {
+				background-color: red; /* Add a dark-grey background on hover */
+			}
+		</style>   
+		<button type="button" class="postBtn position-sticky p-4 float-right btn btn-warning rounded-circle">| + |</button>
+	
+	<!-- END NEW POST BUTTON -->
+		
+
+	
+		<br><br>
 		<br><br>
 		<br><br>
 		<?php require_once("../includes/footer.php");?>

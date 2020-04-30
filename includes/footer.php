@@ -29,7 +29,7 @@
                         <p><span class="fa fa-phone mx-2 "></span> +91 22-27782183</p>
                     </div>
                     <div>
-                        <p><span class="fa fa-envelope mx-2"></span><a href="mailto:support@nustart.com">support@nustart.com</a></p>
+                        <p><span class="fa fa-envelope mx-2"></span><a href="mailto:support@intragram.com">support@intragram.com</a></p>
                     </div>
                     <div class="">
                         <a href="#"><i class="fa fa-facebook fa-2x text-primary mx-3"></i></a>
@@ -51,6 +51,8 @@
 </footer>
 
 <script src="../js/jquery-3.4.1.min.js"></script>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
 
 <script src="../js/scripts.js"></script>
 
