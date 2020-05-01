@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 29, 2020 at 07:09 AM
+-- Generation Time: May 01, 2020 at 03:39 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `blog` (
   `id` int(11) NOT NULL,
-  `BlogID` text NOT NULL,
-  `Caption` text NOT NULL,
+  `BlogId` text NOT NULL,
+  `Heading` text NOT NULL,
   `Created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Image` text NOT NULL,
-  `UserId` int(11) NOT NULL
+  `UserId` int(11) NOT NULL,
+  `Image` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,7 +63,9 @@ INSERT INTO `users` (`id`, `Name`, `RollNo`, `Email`, `Designation`, `Branch`, `
 (1, 'Deepak Gupta', '', 'b180081@nitsikkim.ac.in', 'STUDENT', 'NuStart', 'MALE', 123, '123', '202cb962ac59075b964b07152d234b70'),
 (2, 'Deepak Gupta', '', 'b180w081@nitsikkim.ac.in', 'STUDENT', 'NuStart', 'MALE', 1234, '123', '202cb962ac59075b964b07152d234b70'),
 (3, 'Deepak Gupta', '123', 'b180079@nitsikkim.ac.in', 'STUDENT', 'ECE', 'MALE', 1233, '12312', '202cb962ac59075b964b07152d234b70'),
-(4, 'Deepak Guptad', '12323', 'd@gmail.xom', 'STUDENT', 'ECE', 'MALE', 12312, '123123', '43cca4b3de2097b9558efefd0ecc3588');
+(4, 'Deepak Guptad', '12323', 'd@gmail.xom', 'STUDENT', 'ECE', 'MALE', 12312, '123123', '43cca4b3de2097b9558efefd0ecc3588'),
+(5, 'Deepak Guptad', 'b180021', 'ghost@gmail.com', 'STUDENT', 'ECE', 'MALE', 12313, '1231344', 'f7e0ef389ac6133c88aedbd66b44a4e1'),
+(6, 'hojjf', '123', 'eqweq@gmailc.om', 'STUDENT', 'CSE', 'MALE', 12354353, 'fwefw', '1c65cef3dfd1e00c0b03923a1c591db4');
 
 --
 -- Indexes for dumped tables
@@ -89,13 +91,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

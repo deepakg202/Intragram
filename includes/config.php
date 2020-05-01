@@ -1,8 +1,7 @@
 <?php
     
-    define ('ROOT_PATH', realpath(dirname(__FILE__)));
-	define('BASE_URL', 'http://localhost/intragram/');
-
+    define ('ROOT_PATH', realpath(dirname(__DIR__)));
+	
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -62,18 +61,32 @@
 
     function printBlog($connection, $who)
     { 
-        for($i=0;$i<2;$i++){
+        require_once("../includes/Parsedown.php");
+        $Parsedown = new Parsedown();
+
+        $blogData = getDBconn()->prepare("SELECT * FROM blog");
+        $blogData->execute();
+        $blogData = $blogData->fetchAll();
+        
+        for($i=0;$i < count($blogData);$i++){
+            $uid = $blogData[$i]['UserId'];    
+            $name = getDBconn()->prepare("SELECT Name FROM users WHERE id= $uid");
+            $name->execute();
+            $filename = $blogData[$i]['BlogId'];
+            $name =  $name->fetchColumn();
         ?>
 
         <div class="card text-dark p-1 mb-4">
             <div class="card-header clearfix">
-                <div class="float-left">Posted By :-</div>
-                <div class="float-right">Date</div>
+                <div class="float-left">Posted By: <?php echo $name;?></div>
+                <div class="float-right"><?php echo $blogData[$i]['Created']?></div>
             </div>
             <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <h5 class="card-title"><?php echo $blogData[$i]['Heading'];?></h5>
+                <p class="card-text">
+                <?php echo $Parsedown->text(file_get_contents(ROOT_PATH."/uploads/blog/$filename.md"));?>
+                </p>
             </div>
             <div class="card-footer d-flex justify-content-around text-center">
                 <a href="#" class="btn "><i class="fa fa-thumbs-up"></i> Like</a>

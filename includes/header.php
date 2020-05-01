@@ -50,8 +50,3 @@
 	</nav>
 </header>
 
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-  });
-</script>

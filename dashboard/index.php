@@ -77,7 +77,7 @@
 				background-color: red; /* Add a dark-grey background on hover */
 			}
 		</style>   
-		<button type="button" class="postBtn position-sticky p-4 float-right btn btn-warning rounded-circle">| + |</button>
+		<a type="button" class="postBtn position-sticky p-4 float-right btn btn-warning rounded-circle" href="addpost.php">| + |</a>
 	
 	<!-- END NEW POST BUTTON -->
 		

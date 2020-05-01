@@ -50,15 +50,22 @@
 			    }
 			    else{
 			        $quer = "INSERT INTO users (Name, Email, Password, Branch, Designation, Contact, Gender, Address, RollNo) ";
-			        $quer .= "VALUES ('$name','$email', '$password', '$branch', '$desig', '$contact', '$gender', '$address', $rollNo)";
-					getDBconn()->exec($quer);
+			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?)";
 					
-					$user = checkUser(getDBconn(), $email, $password);
-					$_SESSION['user'] = $user->fetch();
-
-					$signupResponse = '<p class="test-success">Account Created Succesfully</p>';
-					header('refresh: 1');
-			        
+					$addUser = getDBconn()->prepare($quer);
+					
+					if($addUser->execute([$name,$email, $password, $branch, $desig, $contact, $gender, $address, $rollNo]))
+					{
+						$user = checkUser(getDBconn(), $email, $password);
+						$_SESSION['user'] = $user->fetch();
+						$signupResponse = '<p class="test-success">Account Created Succesfully</p>';
+						header('refresh: 1');  
+					}
+					else
+					{
+						$signupResponse = '<p class="test-danger">Unknown Error Occurred</p>';
+					}
+					  
 			    }
 			    unset($quer);
 			    unset($chk_eml);
