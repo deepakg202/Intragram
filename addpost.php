@@ -1,20 +1,20 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Intragram-Dashboard</title>
+		<title>Intragram-AddPost</title>
 		
-		<?php require_once("../includes/config.php");?>
-		<?php require_once("../includes/includers.php"); ?>
+		<?php require_once("./includes/config.php");?>
+		<?php require_once("./includes/includers.php"); ?>
 	
-		<script src="../js/easymde.min.js"></script>
-		<link href="../css/easymde.min.css" rel="stylesheet">
+		<script src="./js/easymde.min.js"></script>
+		<link href="./css/easymde.min.css" rel="stylesheet">
 
 
 
 	</head>
 	<body>
 		
-		<?php require_once("../includes/header.php");?>
+		<?php require_once("./includes/header.php");?>
 		
 		<?php
 		$uploadResponse = '';
@@ -60,7 +60,7 @@
 			<div class="container p-4 rounded">
 				
 				<div class="page-header text-center">
-					<h1 class="heading">|Post Something|</h1>
+					<h1 class="heading">Post Something</h1>
 					<div class="litline mx-auto"></div>
 					<br/>
 				</div>
@@ -69,12 +69,14 @@
 
 					<div class="form-group">
 						<label for="postHeading">*Heading:</label>
-						<textarea class="form-control" style="font-size: 35px;font-weight: bold;" placeholder="Write A Nice Heading" id="heading" name="postHeading" required></textarea>
+						<textarea class="form-control" style="font-size: 35px;font-weight: 500; color: black;" placeholder="Write A Nice Heading" id="heading" name="postHeading" required></textarea>
 					</div>
 					
 					<div class="form-group">
 						<label for="postBody">Body:</label>
-						<textarea class="form-control" name="postBody" placeholder="Markdown Editor" id="mde"></textarea>
+						<div class="bg-white">
+						<textarea class="form-control" name="postBody" placeholder="Markdown Supported" id="mde"></textarea>
+						</div>
 					</div>
 
 					<!-- <div class="form-group">
@@ -96,7 +98,7 @@
 		
 		</section>
 	<script>
-		var easyMDE = new EasyMDE({element: document.getElementById('mde')});
+		var easyMDE = new EasyMDE({element: document.getElementById('mde'),showIcons: ['code', 'table'], hideIcons: ['fullscreen', 'side-by-side'], autosave: {enabled: true}, placeholder: "Powered By EasyMDE"});
 	</script>
 	
 
@@ -104,12 +106,12 @@
 		}	
 	}
 		else{
-			header('location: ../login.php');
+			header('location: ./login.php');
 		}
 		?>
 
 		
-		<?php require_once("../includes/footer.php");?>
+		<?php require_once("./includes/footer.php");?>
 		
 	</body>
 </html>

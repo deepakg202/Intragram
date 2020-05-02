@@ -61,7 +61,7 @@
 
     function printBlog($connection, $who)
     { 
-        require_once("../includes/Parsedown.php");
+        require_once("./includes/Parsedown.php");
         $Parsedown = new Parsedown();
 
         $blogData = getDBconn()->prepare("SELECT * FROM blog");
@@ -76,18 +76,22 @@
             $name =  $name->fetchColumn();
         ?>
 
+        
         <div class="card text-dark p-1 mb-4">
             <div class="card-header clearfix">
                 <div class="float-left">Posted By: <?php echo $name;?></div>
                 <div class="float-right"><?php echo $blogData[$i]['Created']?></div>
             </div>
+            <a href="#" style="color:unset; text-decoration: unset;">
             <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $blogData[$i]['Heading'];?></h5>
-                <p class="card-text">
-                <?php echo $Parsedown->text(file_get_contents(ROOT_PATH."/uploads/blog/$filename.md"));?>
-                </p>
-            </div>
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $blogData[$i]['Heading'];?></h5>
+                    <p class="card-text">
+                        Click to View Post
+                    </p>
+                </div>
+            </a>
+            <br>
             <div class="card-footer d-flex justify-content-around text-center">
                 <a href="#" class="btn "><i class="fa fa-thumbs-up"></i> Like</a>
         
@@ -96,6 +100,7 @@
                 <a href="#" class="btn"><i class="fa fa-share"></i> Share</a>
             </div>
         </div>
+        
     <?php
     }
 }

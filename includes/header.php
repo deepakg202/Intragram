@@ -16,7 +16,7 @@
 				$fname = $fname[0];
 				?>
 
-				<li class="nav-item"><a href="../dashboard/index.php" class="nav-link">
+				<li class="nav-item"><a href="../index.php" class="nav-link">
 					<i class="fa fa-user" data-toggle="tooltip" title="Profile"></i>
 			        <span class="d-none d-md-inline">Hi, <?php echo $fname;?></span>
 			    </a></li>
