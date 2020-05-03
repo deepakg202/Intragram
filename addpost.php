@@ -36,13 +36,14 @@
 			// $img = $_FILES['postImage'];
 			$postHeading = sanitizeString($_POST['postHeading']);
 			$blogname = $user['id'].'_'.time();
-			$blogfile = fopen(ROOT_PATH."/uploads/blog/${blogname}.md", 'w');
-			fwrite($blogfile, $_POST['postBody']);
-			fclose($blogfile);
-
+			
 			$addquer = getDBconn()->prepare("INSERT INTO blog (BlogId, Heading, UserId) VALUES (? , ? , ?)");
 			if($addquer->execute([$blogname, $postHeading, (int)$user['id']]))
 			{
+				$blogfile = fopen(ROOT_PATH."/uploads/blog/${blogname}.md", 'w');
+				fwrite($blogfile, $_POST['postBody']);
+				fclose($blogfile);
+
 				$uploadResponse = '<div class="jumbotron container">Posted Successfully</div>';
 				header("location: index.php");
 			}

@@ -25,7 +25,7 @@
 						<div class="sticky-top" style="top: 100px;">
 						
 							<div class="profile-pic">
-								<img class="img-fluid rounded bg-white p-2" src="../images/user.png">
+								<img class="img-fluid rounded bg-white p-2" src="./images/user.png">
 							</div>
 
 							
