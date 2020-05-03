@@ -38,7 +38,7 @@
 			$blogname = $user['id'].'_'.time();
 			
 			$addquer = getDBconn()->prepare("INSERT INTO blog (BlogId, Heading, UserId) VALUES (? , ? , ?)");
-			if($addquer->execute([$blogname, $postHeading, (int)$user['id']]))
+			if($addquer->execute([$blogname, $postHeading, $user['id']]))
 			{
 				$blogfile = fopen(ROOT_PATH."/uploads/blog/${blogname}.md", 'w');
 				fwrite($blogfile, $_POST['postBody']);
@@ -49,7 +49,7 @@
 			}
 			else
 			{
-				$uploadResponse = 'error';
+				$uploadResponse = 'Error Occured';
 			}
 
 			

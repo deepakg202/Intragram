@@ -92,7 +92,7 @@ body {
 /*FOOTER*/
 
 footer {
-	background-color: #2C292F;
+	background-color: rgb(59, 59, 59);
 }
 
 .alc{
@@ -105,11 +105,11 @@ footer {
 /*Forms*/
 .form-inner{
 max-width: 450px; 
-background-color: rgba(0, 0, 0, 0.2);
+background-color: rgba(0, 0, 0, 0.267);
 }
 
 .forms{
-  background-color: darkslategrey;
+  background-color: rgb(46, 45, 45);
 }
 
 
