@@ -87,7 +87,19 @@
 
 					
 					<hr>
-					<button type="submit" name="post_submit" class="btn btn-warning">Post</button>
+					<!-- <button type="submit" name="post_submit" class="btn btn-warning">Post</button> -->
+
+					<style>
+			.postBtn {
+				bottom: 40px;
+				right: 40px;
+			}
+			
+			.postBtn:hover {
+				background-color: red; /* Add a dark-grey background on hover */
+			}
+		</style>   
+		<button type="submit" name="post_submit" class="postBtn position-sticky p-4 float-right btn btn-warning rounded-circle"><i class="fa fa-2x fa-paper-plane"></i></button>
 
 				</form>
 				

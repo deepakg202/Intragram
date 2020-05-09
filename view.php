@@ -26,10 +26,11 @@
                     { ?>
 
                         <div class="jumbotron display-4"><?php echo $post['Heading'];?></div>
-                       
-                        <?php
-                        printContents($post['BlogId']);
-                    }
+                       	<hr>
+                        <?php printContents($post['BlogId']) ?>
+						<hr>
+						<?php
+					}
                     else
                     {
                         echo '<div class="jumbotron">Post Not Found </div>';
@@ -37,7 +38,7 @@
                         header('./index.php');
                     }
                 ?>
-
+				
 			</div>
 		</section>
 		<?php }
@@ -54,3 +55,22 @@
 		<?php require_once("./includes/footer.php");?>
 	</body>
 </html>
+
+
+<?php 
+
+function printContents($pid)
+{
+	require_once("./includes/Parsedown.php");
+	$Parsedown = new Parsedown();
+	?>
+	
+	<div class="content">
+		<?php echo $Parsedown->text(file_get_contents(ROOT_PATH.'/uploads/blog/'.$pid.'.md'));?>
+		<br><br><br>
+	</div>
+
+	<?php
+}
+
+?>

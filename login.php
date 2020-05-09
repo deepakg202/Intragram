@@ -57,7 +57,7 @@
 					
 					<div class="row">
 						<div class="col"><a class="text-info" href="./signup.php">Don't Have An account ?</a></div><br />
-						<div class="col text-right"><button type="login" name="login_submit" class="btn btn-warning" style="color: #1A1A1D;">Login</button></div>
+						<div class="col text-right"><button type="submit" name="login_submit" class="btn btn-warning" style="color: #1A1A1D;">Log in</button></div>
 					</div>
 				</form>
 				
