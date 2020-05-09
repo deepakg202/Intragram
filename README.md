@@ -2,7 +2,7 @@
 ---
 #####This is a simple blogging site especially made to share resources in a local network.
 
-<<<<<<< HEAD
+
 #####Works well without javascript except few things like the Markdown Editor, chats, bootstrap.js dependent ui etc.
 =======
 ---
