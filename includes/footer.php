@@ -4,7 +4,7 @@
             <div class="col-md-4 text-center text-md-left ">
                 
                 <div class="">
-                    <h3 class="mb-4 text-white text-warning">Intragram</h3>
+                    <h3 class="mb-4 text-theme">Intragram</h3>
                     
                     <p class="font-weight-bold">
                         <a class="text-white" href="#">Our Team</a>
@@ -22,7 +22,7 @@
                 <div class="">
                     <div>
                         <p class="text-white"> <span class="fa fa-map-marker mx-2"></span>
-                        NIT Sikkim, Ravangla, South Sikkim</p>
+                        Somewhere Around</p>
                     </div>
                     
                     <div>
@@ -41,8 +41,8 @@
             
             <div class="col-md-4 text-white text-center text-md-left">
                 <div class=" ">
-                    <span class="font-weight-bold ">About the Company</span>
-                    <p class="text-warning mt-2" >Our vision is to connect our lovely Learners to corporates and provide jobs to the unemployed but skilled youth so they can work online and get paid for their work. We want to help them fulfil their basic needs. This platform is open to anyone to join and start work.</p>
+                    <span class="font-weight-bold ">About the Website</span>
+                    <p class="text-theme mt-2" >This is a simple site to share resources.</p>
                 </div>
             </div>
         </div>

@@ -82,7 +82,7 @@
 					<br/>
 				</div>
 				
-				<p class="text-warning">Enjoy our services by Creating an Account</p>
+				<p class="text-theme">Enjoy our services by Creating an Account</p>
 				<form id="signupForm" method="POST">
 					
 					<div class="form-group">
@@ -150,7 +150,7 @@
 					<div><?php echo $signupResponse;?></div><br />
 					<div class="row">
 						<div class="col"><a class="text-info" href="./login.php">Already Have An Account</a></div><br />
-						<div class="col text-right"><button type="submit" name="signup_submit" class="btn btn-warning" style="color: #1A1A1D;">Sign up</button></div>
+						<div class="col text-right"><button type="submit" name="signup_submit" class="btn btn-theme" style="color: #1A1A1D;">Sign up</button></div>
 					</div>
 				</form>
 				

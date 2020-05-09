@@ -27,7 +27,7 @@
 					<div class="sticky-top" style="top: 100px;">
 
 						<div class="profile-pic">
-							<img class="img-fluid rounded bg-white p-2" src="./images/user.png">
+							<img class="img-fluid rounded p-2" src="./images/user.png">
 						</div>
 
 
@@ -110,7 +110,7 @@
 			/* Add a dark-grey background on hover */
 		}
 	</style>
-	<a type="button" class="postBtn position-sticky p-4 float-right btn btn-warning rounded-circle" href="add.php"><i
+	<a type="button" class="postBtn position-sticky p-4 float-right btn btn-theme rounded-circle" href="add.php"><i
 			class="fa fa-2x fa-plus-circle"></i></a>
 
 	<!-- END NEW POST BUTTON -->

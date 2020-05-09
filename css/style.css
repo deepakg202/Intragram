@@ -1,3 +1,17 @@
+:root{
+	--main-text-theme: #f0ad4e;
+	--main-navbar: #112D32;
+	--main-bg: #1A1A1D;
+	--main-default-text: #EDF5E1;
+}
+
+.text-theme{
+	color: var(--main-text-theme);
+}
+
+.btn-theme{
+	background-color: var(--main-text-theme);
+}
 
 /*All*/
 html {
@@ -6,8 +20,8 @@ html {
 
 
 body {
-	color: #EDF5E1;
-	background-color: #1A1A1D;
+	color: var(--main-default-text);
+	background-color: var(--main-bg);
 }
 
 
@@ -28,10 +42,10 @@ body {
 }
 
 
+
 /*Navbar*/
 #mainhead {
-	background-color: #112D32;
-  
+	background-color: var(--main-navbar);
 }
 
 
@@ -42,7 +56,7 @@ body {
 
 
 .navbar a {
-	color: #f0ad4e;
+	color: var(--main-text-theme);
 }
 
 .jumbotron{
@@ -51,33 +65,14 @@ body {
 }
 
 
-/*Get Started*/
-
-
 
 
 
 /*PROFILE*/
 #profile{
-}
-
-/*HOME*/
-
-#home {
-	background-image: url("../../images/home.png");
-	background-attachment: fixed;
-	height: 600px;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	color: white;
-}
-
-
-/*GET STARTED*/
-#get_started {
 
 }
+
 
 .bord {
 	border: solid #282828;
@@ -92,7 +87,7 @@ body {
 /*FOOTER*/
 
 footer {
-	background-color: rgb(59, 59, 59);
+	background-color: var(--main-navbar);
 }
 
 .alc{
@@ -116,18 +111,18 @@ background-color: rgba(0, 0, 0, 0.267);
 /*Dashboard*/
 .profile-nav a{
 	text-decoration: none !important;
-	color: #f0ad4e;
+	color: var(--main-text-theme);
 }
 
 .profile-nav a:hover{
-	border-left: solid #f0ad4e;
-	border-right: solid #f0ad4e;
+	border-left: solid var(--main-text-theme);
+	border-right: solid var(--main-text-theme);
 	background-color: rgba(255, 255, 255, 0.05);
 }
 
 .active-nav{
-	border-left: solid #f0ad4e;
-	border-right: solid #f0ad4e;
+	border-left: solid var(--main-text-theme);
+	border-right: solid var(--main-text-theme);
 	background-color: rgba(255, 255, 255, 0.1); 
 }
 

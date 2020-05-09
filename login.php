@@ -49,7 +49,7 @@
 					<div class="litline mx-auto"></div>
 					<br/>
 				</div>
-				<p class="text-warning">Please Login To Continue</p>
+				<p class="text-theme">Please Login To Continue</p>
 				<form id="loginForm" method="POST">
 					<div class="form-group"><input type="email" class="form-control" name="loginEmail" placeholder="Email" required></div>
 					<div class="form-group"><input type="password" class="form-control" name="loginPassword" placeholder="Password" required></div>
@@ -57,7 +57,7 @@
 					
 					<div class="row">
 						<div class="col"><a class="text-info" href="./signup.php">Don't Have An account ?</a></div><br />
-						<div class="col text-right"><button type="submit" name="login_submit" class="btn btn-warning" style="color: #1A1A1D;">Log in</button></div>
+						<div class="col text-right"><button type="submit" name="login_submit" class="btn btn-theme" style="color: #1A1A1D;">Log in</button></div>
 					</div>
 				</form>
 				
