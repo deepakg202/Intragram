@@ -5,6 +5,15 @@
 	--main-default-text: #EDF5E1;
 }
 
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+a:hover{
+	color: inherit;
+}
+
+
 .text-theme{
 	color: var(--main-text-theme);
 }
@@ -46,18 +55,23 @@ body {
 /*Navbar*/
 #mainhead {
 	background-color: var(--main-navbar);
+	color: var(--main-text-theme);
 }
 
 
 .nav-item:hover {
 	background-color: rgba(255, 255, 255, 0.2);
-	
 }
 
 
-.navbar a {
-	color: var(--main-text-theme);
+
+
+.nav-item a{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
+
 
 .jumbotron{
 	color: #EDF5E1;

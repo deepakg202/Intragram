@@ -131,7 +131,7 @@
 			<div class="float-right"><?php echo $blogData[$i]['Created']?></div>
 		</div>
 		<a href="./view.php?pid=<?php echo $filename; ?>" style="color:unset; text-decoration: unset;">
-			<img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
+			<img class="card-img" src="https://via.placeholder.com/1366x768">
 			<div class="card-body">
 				<h5 class="card-title"><?php echo $blogData[$i]['Heading'];?></h5>
 				<p class="card-text">

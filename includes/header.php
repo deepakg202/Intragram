@@ -17,29 +17,29 @@
 				?>
 
 				<li class="nav-item"><a href="./profile.php" class="nav-link">
-					<i class="fa fa-user" data-toggle="tooltip" title="Profile"></i>
+					<i class="fa fa-user fa-2x fa-fw " data-toggle="tooltip" title="Profile"></i>
 			        <span class="d-none d-md-inline">Hi, <?php echo $fname;?></span>
 			    </a></li>
 
 			    <li class="nav-item"><a href="#" class="nav-link">
-					<i class="fa fa-bell" data-toggle="tooltip" title="Notifications"></i>
+					<i class="fa fa-bell fa-2x fa-fw" data-toggle="tooltip" title="Notifications"></i>
 			        <span class="d-none d-md-inline">Notifications</span>
 			    </a></li>
 
 			    <li class="nav-item"><a href="./logout.php" class="nav-link">
-					<i class="fa fa-sign-out" data-toggle="tooltip" title="Log Out"></i>
+					<i class="fa fa-sign-out fa-2x fa-fw" data-toggle="tooltip" title="Log Out"></i>
 			        <span class="d-none d-md-inline">Log Out</span>
 			    </a></li>
 
 			  	<?php }else{ ?>
 
 			  	<li class="nav-item"><a href="./signup.php" class="nav-link">
-					<i class="fa fa-user-plus" data-toggle="tooltip" title="Sign Up"></i>
+					<i class="fa fa-user-plus fa-2x fa-fw" data-toggle="tooltip" title="Sign Up"></i>
 			        <span class="d-none d-md-inline"> Sign Up</span>
 			    </a></li>
 
 			    <li class="nav-item"><a href="./login.php" class="nav-link">
-					<i class="fa fa-sign-in" data-toggle="tooltip" title="Log In"></i>
+					<i class="fa fa-sign-in fa-2x fa-fw" data-toggle="tooltip" title="Log In"></i>
 			        <span class="d-none d-md-inline" data-toggle="tooltip" title="Log In"> Log In</span>
 			    </a></li>
 
