@@ -53,5 +53,133 @@
 
 
 
+    
+
+    function printBlog($connection, $who, $postPerPage)
+    { 
+        if($who == '')
+            $posts = 0;
+        else 
+            $posts = getDBconn()->query("SELECT COUNT(*) FROM blog WHERE UserId = $who")->fetchColumn();
+        
+        if($posts == 0)
+            echo '<h2 class="jumbotron">No Posts Found !</h2>';    
+        else
+        {
+            $totalPages = ceil($posts/$postPerPage);
+            $totalPages = $totalPages==0?1:$totalPages;
+            
+            if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+                $currentpage = (int) sanitizeString($_GET['page']);
+            } else {
+                $currentpage = 1;
+            } 
+
+            if ($currentpage > $totalPages) {
+                $currentpage = $totalPages;
+            }
+
+            if ($currentpage < 1) {
+                $currentpage = 1;
+            }
+
+            $offset = ($currentpage - 1) * $postPerPage;
+
+            $blogData = getDBconn()->prepare("SELECT * FROM blog  WHERE UserId = $who ORDER BY Created DESC LIMIT $offset, $postPerPage");
+            $blogData->execute();
+            $blogData = $blogData->fetchAll();
+            
+            for($i=0;$i < count($blogData);$i++){
+                $uid = $blogData[$i]['UserId'];    
+                $name = $connection->query("SELECT Name FROM users WHERE id= $uid")->fetchColumn();
+                
+                $filename = $blogData[$i]['BlogId'];
+                
+                if(!file_exists(ROOT_PATH.'/uploads/blog/'.$filename.'.md'))
+                    continue;
+            ?>
+
+
+        <div class="card text-dark p-1 mb-4">
+            <div class="card-header clearfix">
+                <div class="float-left">Posted By: <?php echo $name;?></div>
+                <div class="float-right"><?php echo $blogData[$i]['Created']?></div>
+            </div>
+            <a href="./view.php?pid=<?php echo $filename; ?>" style="color:unset; text-decoration: unset;">
+                <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $blogData[$i]['Heading'];?></h5>
+                    <p class="card-text">
+                        Click to View Post
+                    </p>
+                </div>
+            </a>
+            <br>
+            <div class="card-footer d-flex justify-content-around text-center">
+                <a href="#" class="btn "><i class="fa fa-thumbs-up"></i> Like</a>
+
+                <a href="#" class="btn"><i class="fa fa-comment"></i> Comment</a>
+
+                <a href="#" class="btn"><i class="fa fa-paperclip"></i> Share</a>
+            </div>
+        </div>
+
+        <?php
+        }
+        blogNav($currentpage, $totalPages);
+    }
+}
+
+
+
+
+    function blogNav($currentpage, $totalPages)
+    {?>
+
+    <nav aria-label="blog-nav">
+        <ul class="pagination justify-content-center">
+            <li class="page-item <?php echo ($currentpage == 1)?'disabled':'' ; ?>">
+                <a class="page-link" href="?page=<?php echo $currentpage-1;?>" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            <?php 
+            for($i=1;$i<=$totalPages;$i++)
+            {
+            
+                if($i == $currentpage)
+                {?>
+                    <li class="page-item active"><a class="page-link" href="#"><?php echo $i;?></a></li>
+                <?php
+                }
+                else
+                {
+                ?>
+            <li class="page-item"><a class="page-link" href="?page=<?php echo $i;?>"><?php echo $i;?></a></li>
+
+            <?php
+                }
+                
+            }
+            
+            ?>
+
+            <li class="page-item  <?php echo ($currentpage == $totalPages)?'disabled':'' ; ?>">
+                <a class="page-link" href="?page=<?php echo $currentpage+1;?>" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <?php
+    }
+
+
+
 
 ?>

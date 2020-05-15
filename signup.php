@@ -25,6 +25,7 @@
 				unset($_POST['signup_submit']);                
 				
 				$name = sanitizeString($_POST['signupName']);
+				$username = sanitizeString($_POST['signupUsername']);
 			    $email = sanitizeString($_POST['signupEmail']);
 				$branch = sanitizeString($_POST['signupBranch']);
 			    $desig = sanitizeString($_POST['signupDesig']);
@@ -41,35 +42,43 @@
 
 				$chk_cnct = getDBconn()->prepare("SELECT COUNT(*) FROM users WHERE Contact= :contact");
 				$chk_cnct->execute([":contact"=>$contact]);
+
+				$chk_uname = getDBconn()->prepare("SELECT COUNT(*) FROM users WHERE Username= :username");
+				$chk_uname->execute([":username"=>$username]);
 				
-				if($chk_eml->fetchColumn() !=0){
-					 $signupResponse = '<p class="text-danger">Email Id Already Taken.</p>';
+				if($chk_uname->fetchColumn() != 0)
+				{
+					$signupResponse = '<p class="text-danger">Username Not Available.</p>';
+				}
+				else if($chk_eml->fetchColumn() !=0){
+					$signupResponse = '<p class="text-danger">Email Id Already Taken.</p>';
 			    }
 			    else if($chk_cnct->fetchColumn() !=0){
 					$signupResponse = '<p class="text-danger">Contact No. Already Exist.</p>';
-			    }
+				}
 			    else{
-			        $quer = "INSERT INTO users (Name, Email, Password, Branch, Designation, Contact, Gender, Address, RollNo) ";
-			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?)";
+			        $quer = "INSERT INTO users (Name, Username, Email, Password, Branch, Designation, Contact, Gender, Address, RollNo) ";
+			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?,?)";
 					
 					$addUser = getDBconn()->prepare($quer);
 					
-					if($addUser->execute([$name,$email, $password, $branch, $desig, $contact, $gender, $address, $rollNo]))
+					if($addUser->execute([$name, $username, $email, $password, $branch, $desig, $contact, $gender, $address, $rollNo]))
 					{
 						$user = checkUser(getDBconn(), $email, $password);
 						$_SESSION['user'] = $user->fetch();
-						$signupResponse = '<p class="test-success">Account Created Succesfully</p>';
+						$signupResponse = '<p class="text-success">Account Created Succesfully</p>';
 						header('refresh: 1');  
 					}
 					else
 					{
-						$signupResponse = '<p class="test-danger">Unknown Error Occurred</p>';
+						$signupResponse = '<p class="text-danger">Unknown Error Occurred</p>';
 					}
-					  
+					
 			    }
 			    unset($quer);
 			    unset($chk_eml);
-			    unset($chk_cnct);
+				unset($chk_cnct);
+				unset($uname);
 			}
 
 
@@ -95,7 +104,12 @@
 						<input type="email" name="signupEmail" class="form-control" placeholder="Email" required>
 					</div>
 					
-				
+					<div class="form-group">
+						<label for="signupUsername" class="control-label">Username :</label>
+						<input type="text" name="signupUsername" class="form-control" placeholder="Think a Username" required>
+					</div>
+
+
 
 					<div class="form-group">
 						<label for="signupDesig">Designation:</label>
