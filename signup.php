@@ -1,8 +1,28 @@
+
+<?php require_once("./includes/config.php");?>
+<?php
+	if(isset($_POST['usernamecheck']))
+	{
+		$uname = sanitizeString($_POST['usernamecheck']);
+		$q = getDBconn()->prepare("SELECT Count(Username) FROM users WHERE Username='$uname'");
+		
+		if($q->execute([$uname]))
+			echo $q->fetchColumn();
+		else
+			echo 'Err';
+
+		unset($_POST['usernamecheck']);
+		exit;
+	}
+	
+?>
+
+
+
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Intragram-SignUp</title>
-		<?php require_once("./includes/config.php");?>
 		<?php require_once("./includes/includers.php"); ?>
 
 	</head>
@@ -25,7 +45,7 @@
 				unset($_POST['signup_submit']);                
 				
 				$name = sanitizeString($_POST['signupName']);
-				$username = sanitizeString($_POST['signupUsername']);
+				$username = str_replace(' ','', sanitizeString($_POST['signupUsername']));
 			    $email = sanitizeString($_POST['signupEmail']);
 				$branch = sanitizeString($_POST['signupBranch']);
 			    $desig = sanitizeString($_POST['signupDesig']);
@@ -97,6 +117,7 @@
 					<div class="form-group">
 						<label for="signupName" class="control-label">Name :</label>
 						<input type="text" name="signupName" class="form-control" placeholder="Full Name" required>
+						
 					</div>
 
 					<div class="form-group">
@@ -106,7 +127,8 @@
 					
 					<div class="form-group">
 						<label for="signupUsername" class="control-label">Username :</label>
-						<input type="text" name="signupUsername" class="form-control" placeholder="Think a Username" required>
+						<input type="text" name="signupUsername" class="form-control" pattern=".{8,}" placeholder="Think a Username" required>
+						<div class="invalid-feedback">Username Not Available</div>
 					</div>
 
 
@@ -179,4 +201,24 @@
 		</section>
 		<?php require_once("./includes/footer.php");?>
 	</body>
+
+
+	<script>
+		$('input[name="signupUsername"]').on('input', function(e) {
+     		
+			$.ajax({
+				type: 'post',
+				data: {usernamecheck: $(this).val()},
+				success: (response)=>{
+					if(response == 1 || $(this).val().length < 6) 
+						$(this).removeClass("is-valid").addClass("is-invalid");
+					else if(response >= 0 )
+						$(this).removeClass("is-invalid").addClass("is-valid");
+				}
+				
+			});
+		});
+	</script>
+
+
 </html>

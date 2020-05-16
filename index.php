@@ -29,7 +29,7 @@
 
 
 					<?php 
-							printBlog(getDBconn(), "UserId", 2);
+							printBlog(getDBconn(), 'all', 2);
 				
 					?>
 

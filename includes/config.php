@@ -59,9 +59,12 @@
     { 
         if($who == '')
             $posts = 0;
-        else 
-            $posts = getDBconn()->query("SELECT COUNT(*) FROM blog WHERE UserId = $who")->fetchColumn();
+        else if($who == 'all')
+            $posts = getDBconn()->query("SELECT COUNT(*) FROM blog")->fetchColumn();
+        else
+            $posts = getDBconn()->query("SELECT COUNT(*) FROM blog WHERE UserId = '$who'")->fetchColumn();
         
+
         if($posts == 0)
             echo '<h2 class="jumbotron">No Posts Found !</h2>';    
         else
@@ -69,23 +72,28 @@
             $totalPages = ceil($posts/$postPerPage);
             $totalPages = $totalPages==0?1:$totalPages;
             
-            if (isset($_GET['page']) && is_numeric($_GET['page'])) {
+        
+            if (isset($_GET['page']) && is_numeric($_GET['page']))
                 $currentpage = (int) sanitizeString($_GET['page']);
-            } else {
+            else
                 $currentpage = 1;
-            } 
+             
 
-            if ($currentpage > $totalPages) {
+            if ($currentpage > $totalPages) 
                 $currentpage = $totalPages;
-            }
+            
 
-            if ($currentpage < 1) {
+            if ($currentpage < 1)
                 $currentpage = 1;
-            }
+        
 
             $offset = ($currentpage - 1) * $postPerPage;
 
-            $blogData = getDBconn()->prepare("SELECT * FROM blog  WHERE UserId = $who ORDER BY Created DESC LIMIT $offset, $postPerPage");
+            if($who == 'all')
+                $blogData = getDBconn()->prepare("SELECT * FROM blog ORDER BY Created DESC LIMIT $offset, $postPerPage");
+            else
+                $blogData = getDBconn()->prepare("SELECT * FROM blog  WHERE UserId = $who ORDER BY Created DESC LIMIT $offset, $postPerPage");
+            
             $blogData->execute();
             $blogData = $blogData->fetchAll();
             
