@@ -26,8 +26,11 @@
                     { ?>
 
                         <div class="jumbotron display-4"><?php echo $post['Heading'];?></div>
-                       	<hr>
-                        <?php printContents($post['BlogId']) ?>
+						   <hr>
+						   <div class="blogcontent">
+                        		<?php printContents($post['BlogId']) ?>
+							</div>
+							<br><br><br>
 						<hr>
 						<?php
 					}
@@ -67,9 +70,9 @@ function printContents($pid)
 	
 	<div class="content">
 		<?php echo $Parsedown->text(file_get_contents(ROOT_PATH.'/uploads/blog/'.$pid.'.md'));?>
-		<br><br><br>
+		
 	</div>
-
+	
 	<?php
 }
 

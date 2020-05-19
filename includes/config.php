@@ -90,16 +90,16 @@
             $offset = ($currentpage - 1) * $postPerPage;
 
             if($who == 'all')
-                $blogData = getDBconn()->prepare("SELECT * FROM blog ORDER BY Created DESC LIMIT $offset, $postPerPage");
+                $blogData = $connection->prepare("SELECT * FROM blog ORDER BY Created DESC LIMIT $offset, $postPerPage");
             else
-                $blogData = getDBconn()->prepare("SELECT * FROM blog  WHERE UserId = $who ORDER BY Created DESC LIMIT $offset, $postPerPage");
+                $blogData = $connection->prepare("SELECT * FROM blog WHERE UserId = $who ORDER BY Created DESC LIMIT $offset, $postPerPage");
             
             $blogData->execute();
             $blogData = $blogData->fetchAll();
             
             for($i=0;$i < count($blogData);$i++){
                 $uid = $blogData[$i]['UserId'];    
-                $name = $connection->query("SELECT Name FROM users WHERE id= $uid")->fetchColumn();
+                $name = $connection->query("SELECT Name FROM users WHERE Username= '$uid'")->fetchColumn();
                 
                 $filename = $blogData[$i]['BlogId'];
                 
@@ -113,13 +113,13 @@
                 <div class="float-left">Posted By: <?php echo $name;?></div>
                 <div class="float-right"><?php echo $blogData[$i]['Created']?></div>
             </div>
-            <a href="./view.php?pid=<?php echo $filename; ?>" style="color:unset; text-decoration: unset;">
+            <a class="blogcard" href="./view.php?pid=<?php echo $filename; ?>" style="color:unset; text-decoration: unset;">
                 <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $blogData[$i]['Heading'];?></h5>
-                    <p class="card-text">
+                    <div class="card-text">
                         Click to View Post
-                    </p>
+                    </div>
                 </div>
             </a>
             <br>
@@ -186,8 +186,5 @@
 
     <?php
     }
-
-
-
 
 ?>

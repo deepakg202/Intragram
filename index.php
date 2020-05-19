@@ -33,6 +33,7 @@
 				
 					?>
 
+					
 
 				</div>
 
@@ -74,6 +75,19 @@
 	<br><br>
 	<br><br>
 	<?php require_once("./includes/footer.php");?>
+
+	<script>
+		$(".blogcard").on('click', function(e){
+			e.stopPropagation();
+			
+			var fullpost = ($($(this).find('.card-text')));
+			$.get($(this).attr('href'), null, function(text){
+				fullpost.html($($(text).find('.blogcontent')).html());
+			});
+						
+			return false;
+		});
+	</script>
 </body>
 
 </html>

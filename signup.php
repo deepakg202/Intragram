@@ -200,10 +200,8 @@
 			<br><br>
 		</section>
 		<?php require_once("./includes/footer.php");?>
-	</body>
-
-
-	<script>
+	
+		<script>
 		$('input[name="signupUsername"]').on('input', function(e) {
      		
 			$.ajax({
@@ -219,6 +217,11 @@
 			});
 		});
 	</script>
+	
+	</body>
+
+
+	
 
 
 </html>
