@@ -55,9 +55,9 @@
 					<div class="form-group"><input type="password" class="form-control" name="loginPassword" placeholder="Password" required></div>
 					<div><?php echo $loginResponse;?></div><br />
 					
-					<div class="row">
-						<div class="col"><a class="text-info" href="./signup.php">Don't Have An account ?</a></div><br />
-						<div class="col text-right"><button type="submit" name="login_submit" class="btn btn-theme" style="color: #1A1A1D;">Log in</button></div>
+					<div class="d-flex flex-row justify-content-between">
+						<div><a class="text-info" href="./signup.php">Don't Have An account ?</a></div><br />
+						<div><button type="submit" name="login_submit" class="btn btn-theme" style="color: #1A1A1D;">Log in</button></div>
 					</div>
 				</form>
 				

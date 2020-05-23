@@ -86,8 +86,6 @@
 					</div> -->
 
 					
-					<hr>
-					<!-- <button type="submit" name="post_submit" class="btn btn-theme">Post</button> -->
 
 					<style>
 			.postBtn {

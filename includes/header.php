@@ -21,9 +21,9 @@
 			        <span class="d-none d-md-inline">Hi, <?php echo $fname;?></span>
 			    </a></li>
 
-			    <li class="nav-item"><a href="#" class="nav-link">
-					<i class="fa fa-bell fa-2x fa-fw" data-toggle="tooltip" title="Notifications"></i>
-			        <span class="d-none d-md-inline">Notifications</span>
+			    <li class="nav-item"><a href="./chat.php" class="nav-link">
+					<i class="fa fa-envelope fa-2x fa-fw" data-toggle="tooltip" title="Messages"></i>
+			        <span class="d-none d-md-inline">Messages</span>
 			    </a></li>
 
 			    <li class="nav-item"><a href="./logout.php" class="nav-link">
