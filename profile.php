@@ -17,7 +17,8 @@
 			$name = $user['Name'];
 			$desig = $user['Designation'];
 			$branch = $user['Branch'];
-			?>
+			$profilepic = $user['ProfilePic'];
+	?>
 
 	<section id="profile" class="pt-3">
 		<div class="container">
@@ -27,7 +28,7 @@
 					<div class="sticky-top" style="top: 100px;">
 
 						<div class="profile-pic">
-							<img class="img-fluid rounded p-2" src="./images/user.png">
+							<img class="img-fluid rounded-circle p-2" src="<?php echo $profilepic;?>" style="height: 256px; width: 256px;" onerror="this.src='images/no-image.png';" />
 						</div>
 
 

@@ -55,7 +55,7 @@
 				$address = sanitizeString($_POST['signupAddress']);
 			    $rollNo = sanitizeString($_POST['signupRollNo']);
 				
-
+				$profilepic = sanitizeString('username');
 				
 				$chk_eml = getDBconn()->prepare("SELECT COUNT(*) FROM users WHERE Email= :email");
 				$chk_eml->execute([":email"=>$email]);
@@ -77,12 +77,12 @@
 					$signupResponse = '<p class="text-danger">Contact No. Already Exist.</p>';
 				}
 			    else{
-			        $quer = "INSERT INTO users (Name, Username, Email, Password, Branch, Designation, Contact, Gender, Address, RollNo) ";
-			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?,?)";
+			        $quer = "INSERT INTO users (Name, Username, Email, Password, Branch, Designation, Contact, Gender, Address, RollNo, ProfilePic) ";
+			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 					
 					$addUser = getDBconn()->prepare($quer);
 					
-					if($addUser->execute([$name, $username, $email, $password, $branch, $desig, $contact, $gender, $address, $rollNo]))
+					if($addUser->execute([$name, $username, $email, $password, $branch, $desig, $contact, $gender, $address, $rollNo, $profilepic]))
 					{
 						$user = checkUser(getDBconn(), $email, $password);
 						$_SESSION['user'] = $user->fetch();
