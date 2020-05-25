@@ -13,7 +13,7 @@ body {
             <div class="col-md-12 text-center">
                 <span class="display-1 d-block">LOL!</span>
                 <div class="mb-4 lead">Unfortunately, An Error Occured.</div>
-                <a href="<?php echo $_SERVER['HTTP_HOST'];?>" class="btn btn-link">Back to Home</a>
+                <a href="//<?php echo $_SERVER['HTTP_HOST'];?>" class="btn btn-link">Back to Home</a>
             </div>
         </div>
     </div>
