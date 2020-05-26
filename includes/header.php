@@ -21,7 +21,7 @@
 			        <span class="d-none d-md-inline">Hi, <?php echo $fname;?></span>
 			    </a></li>
 
-			    <li class="nav-item"><a href="./chatbox.php" class="nav-link">
+			    <li class="nav-item"><a href="./talk.php" class="nav-link">
 					<i class="fa fa-envelope fa-2x fa-fw" data-toggle="tooltip" title="Messages"></i>
 			        <span class="d-none d-md-inline">Messages</span>
 			    </a></li>
