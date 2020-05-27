@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row pt-5">
             <div class="col-md-4 text-center text-md-left ">
-                
+                <img src="./images/logo.png" class="img-fluid" style="width:100px; height:100px;">
                 <div class="">
                     <h3 class="mb-4 text-theme">Intragram</h3>
                     
@@ -44,9 +44,9 @@
                     <p class="text-light py-4 mb-4 ">2020 &copy; All Rights Reserved <br>Intragram Pvt. Ltd.</p>
                 </div>
             </div>
-                    </div>
+        </div>
     </div>
-
+    <br>
 </footer>
 
 <script src="./js/jquery-3.4.1.min.js"></script>
