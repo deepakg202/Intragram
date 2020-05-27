@@ -55,7 +55,7 @@
 				$address = sanitizeString($_POST['signupAddress']);
 			    $rollNo = sanitizeString($_POST['signupRollNo']);
 				
-				$profilepic = sanitizeString('username');
+				$profilepic = "https://api.adorable.io/avatars/512/".sanitizeString($username);
 				
 				$chk_eml = getDBconn()->prepare("SELECT COUNT(*) FROM users WHERE Email= :email");
 				$chk_eml->execute([":email"=>$email]);
