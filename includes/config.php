@@ -51,8 +51,6 @@
         return $stmt;
     }
 
-
-
     
 
     function printBlog($connection, $who, $postPerPage)
@@ -66,7 +64,7 @@
         
 
         if($posts == 0)
-            echo '<h2 class="jumbotron">No Posts Found !</h2>';    
+            echo '<h2 class="jumbotron">Oops! You Haven\'t Posted Anything Yet !</h2>';    
         else
         {
             $totalPages = ceil($posts/$postPerPage);

@@ -14,10 +14,7 @@
 	<?php
 		if(isset($_SESSION['user'])){ 
 			$user = $_SESSION['user'];
-			$name = $user['Name'];
-			$desig = $user['Designation'];
-			$branch = $user['Branch'];
-			$profilepic = $user['ProfilePic'];
+			
 	?>
 
 	<section id="profile" class="pt-3">
@@ -28,14 +25,13 @@
 					<div class="sticky-top" style="top: 100px;">
 
 						<div class="profile-pic">
-							<img class="img-fluid rounded-circle p-2" src="<?php echo $profilepic;?>" style="height: 256px; width: 256px;" onerror="this.src='images/no-image.png';" />
+							<img class=" rounded-circle p-2 img-fluid" src="<?php echo $user['ProfilePic'];?>" style="height: 256px; width: 256px;" onerror="this.src='images/no-image.png';" />
 						</div>
 
 
 						<div class="profile-detail pt-2">
-							<h2><?php echo $name;?></h2>
-							<h3><?php echo $desig;?></h3>
-							<h4><?php echo $branch;?></h4>
+							<h2><?php echo $user['Name'];?></h2>
+							<h4><?php echo $user['About'];?></h4>
 						</div>
 						<br />
 						<div class="profile-nav py-3">

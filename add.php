@@ -94,7 +94,7 @@
 			}
 			
 			.postBtn:hover {
-				background-color: red; /* Add a dark-grey background on hover */
+				background-color: red;
 			}
 		</style>   
 		<button type="submit" name="post_submit" class="postBtn position-sticky p-4 float-right btn btn-theme rounded-circle"><i class="fa fa-2x fa-paper-plane"></i></button>

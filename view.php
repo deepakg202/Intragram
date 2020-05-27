@@ -12,9 +12,7 @@
 		<?php
 		if(isset($_SESSION['user']) && isset($_GET['pid'])){ 
 			$user = $_SESSION['user'];
-			$name = $user['Name'];
-			$desig = $user['Designation'];
-			$branch = $user['Branch'];
+			
 			?>
 		
 		<section id="viewPost" class="pt-3">

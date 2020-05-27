@@ -14,9 +14,7 @@
 	<?php
 		if(isset($_SESSION['user'])){ 
 			$user = $_SESSION['user'];
-			$name = $user['Name'];
-			$desig = $user['Designation'];
-			$branch = $user['Branch'];
+
 			?>
 
 	<section id="allposts" class="pt-3">
@@ -29,8 +27,7 @@
 
 
 					<?php 
-							printBlog(getDBconn(), 'all', 2);
-				
+							printBlog(getDBconn(), 'all', 2);				
 					?>
 
 					
@@ -61,7 +58,6 @@
 
 		.postBtn:hover {
 			background-color: red;
-			/* Add a dark-grey background on hover */
 		}
 	</style>
 	<a type="button" class="postBtn position-sticky p-4 float-right btn btn-theme rounded-circle" href="add.php"><i

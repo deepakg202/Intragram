@@ -12,17 +12,15 @@
                         <a class="text-white" href="#">Terms & Conditions</a>
                         |
                         <a class="text-white" href="#">Privacy Policy</a>
-                        
                     </p>
-                    <p class="text-light py-4 mb-4 ">2020 &copy; All Rights Reserved <br>Intragram Pvt. Ltd.</p>
+
                 </div>
             </div>
             
-            <div class="col-md-4 text-white text-center text-md-left ">
+            <div class="col-md-4 text-white text-center text-md-left">
                 <div class="">
                     <div>
-                        <p class="text-white"> <span class="fa fa-map-marker mx-2"></span>
-                        Somewhere Around</p>
+                        <p class="text-white"><span class="fa fa-map-marker mx-2"></span> Somewhere Around</p>
                     </div>
                     
                     <div>
@@ -43,11 +41,12 @@
                 <div class=" ">
                     <span class="font-weight-bold ">About the Website</span>
                     <p class="text-theme mt-2" >This is a simple site to share resources.</p>
+                    <p class="text-light py-4 mb-4 ">2020 &copy; All Rights Reserved <br>Intragram Pvt. Ltd.</p>
                 </div>
             </div>
-        </div>
+                    </div>
     </div>
-    <br/>
+
 </footer>
 
 <script src="./js/jquery-3.4.1.min.js"></script>

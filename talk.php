@@ -14,9 +14,7 @@
 	<?php
 		if(isset($_SESSION['user'])){ 
 			$user = $_SESSION['user'];
-			$name = $user['Name'];
-			$desig = $user['Designation'];
-			$branch = $user['Branch'];
+
 	?>
 
 			<section class="forms">
@@ -71,8 +69,7 @@
 								if(isset($_GET['searchUser_submit']) && !empty($_GET['searchUser']))
 								{		
 									$term = sanitizeString($_GET['searchUser']);
-									userSearch(getDBconn(), $term);
-									
+									userSearch(getDBconn(), $term);								
 								}
 								else
 								{
@@ -126,7 +123,7 @@
 
 								}
 								else
-									echo '<div class="text-center p-4">No Messages</div>';			
+									echo '<div class="text-center h-100 bg-danger p-4">No Messages, Say Hi to start a conversation.</div>';			
 
 							}
 							else
@@ -206,19 +203,19 @@
 
 	function getMiniProfile($prof)
 	{
-		$reci = getDBconn()->prepare("SELECT * FROM users WHERE id=?");
+		$reci = getDBconn()->prepare("SELECT Name, Username, About, ProfilePic FROM users WHERE id=?");
 		if($reci->execute([$prof]))
 		{
 			$reci = $reci->fetch();
 			?>
 			<div class="mini-profile text-center pt-4 border">
 				<div class="profile-pic">
-				<img class="img-fluid rounded-circle bg-dark p-2" src="<?php echo $profilepic;?>" style="height: 128px; width: 128px;" onerror="this.src='images/no-image.png';" />
+				<img class="img-fluid rounded-circle bg-dark p-2" src="<?php echo $reci['ProfilePic'];?>" style="height: 128px; width: 128px;" onerror="this.src='images/no-image.png';" />
 				</div>
 				<div class="profile-detail pt-2">
 					<h2><?php echo $reci['Name'];?></h2>
 					<h3><?php echo $reci['Username'];?></h3>
-					<h4><?php echo $reci['Designation'];?></h4>
+					<h4><?php echo $reci['About'];?></h4>
 				</div>	
 			</div>
 		<?php

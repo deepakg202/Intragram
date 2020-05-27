@@ -47,23 +47,25 @@
 				$name = sanitizeString($_POST['signupName']);
 				$username = str_replace(' ','', sanitizeString($_POST['signupUsername']));
 			    $email = sanitizeString($_POST['signupEmail']);
-				$branch = sanitizeString($_POST['signupBranch']);
-			    $desig = sanitizeString($_POST['signupDesig']);
+				$branch = '';//sanitizeString($_POST['signupBranch']);
+			    $desig = '';//sanitizeString($_POST['signupDesig']);
 			    $password = md5(sanitizeString($_POST['signupPassword']));
 			    $contact = sanitizeString($_POST['signupContact']);
-			    $gender = sanitizeString($_POST['signupGender']);
-				$address = sanitizeString($_POST['signupAddress']);
-			    $rollNo = sanitizeString($_POST['signupRollNo']);
+			    $gender = '';//sanitizeString($_POST['signupGender']);
+				$address = '';//sanitizeString($_POST['signupAddress']);
+			    $rollNo = '';//sanitizeString($_POST['signupRollNo']);
+				$about = sanitizeString($_POST['signupAbout']);
+
 				
 				$profilepic = "https://api.adorable.io/avatars/512/".sanitizeString($username);
 				
-				$chk_eml = getDBconn()->prepare("SELECT COUNT(*) FROM users WHERE Email= :email");
+				$chk_eml = getDBconn()->prepare("SELECT COUNT(Email) FROM users WHERE Email= :email");
 				$chk_eml->execute([":email"=>$email]);
 
-				$chk_cnct = getDBconn()->prepare("SELECT COUNT(*) FROM users WHERE Contact= :contact");
+				$chk_cnct = getDBconn()->prepare("SELECT COUNT(Contact) FROM users WHERE Contact= :contact");
 				$chk_cnct->execute([":contact"=>$contact]);
 
-				$chk_uname = getDBconn()->prepare("SELECT COUNT(*) FROM users WHERE Username= :username");
+				$chk_uname = getDBconn()->prepare("SELECT COUNT(Username) FROM users WHERE Username= :username");
 				$chk_uname->execute([":username"=>$username]);
 				
 				if($chk_uname->fetchColumn() != 0)
@@ -77,12 +79,12 @@
 					$signupResponse = '<p class="text-danger">Contact No. Already Exist.</p>';
 				}
 			    else{
-			        $quer = "INSERT INTO users (Name, Username, Email, Password, Branch, Designation, Contact, Gender, Address, RollNo, ProfilePic) ";
-			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			        $quer = "INSERT INTO users (Name, Username, Email, Password, Branch, Designation, Contact, Gender, Address, RollNo, ProfilePic, About) ";
+			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 					
 					$addUser = getDBconn()->prepare($quer);
 					
-					if($addUser->execute([$name, $username, $email, $password, $branch, $desig, $contact, $gender, $address, $rollNo, $profilepic]))
+					if($addUser->execute([$name, $username, $email, $password, $branch, $desig, $contact, $gender, $address, $rollNo, $profilepic, $about]))
 					{
 						$user = checkUser(getDBconn(), $email, $password);
 						$_SESSION['user'] = $user->fetch();
@@ -127,47 +129,53 @@
 					
 					<div class="form-group">
 						<label for="signupUsername" class="control-label">Username :</label>
-						<input type="text" name="signupUsername" class="form-control" pattern=".{8,}" placeholder="Think a Username" required>
-						<div class="invalid-feedback">Username Not Available</div>
+						<input type="text" name="signupUsername" class="form-control" pattern=".{6,}" placeholder="Think a Username" required>
+						<div id="error-username" class="invalid-feedback">Username Already In Use</div>
+						
 					</div>
 
 
+<?php
+					// <div class="form-group">
+					// 	<label for="signupDesig">Designation:</label>
+					// 	<select class="form-control" name="signupDesig" required>
+					// 		<option disabled selected>Select One</option>
+					// 		<option>Student</option>
+					// 		<option>Teacher</option>
+					// 	</select>
+					// </div>
 
-					<div class="form-group">
-						<label for="signupDesig">Designation:</label>
-						<select class="form-control" name="signupDesig" required>
-							<option disabled selected>Select One</option>
-							<option>Student</option>
-							<option>Teacher</option>
-						</select>
-					</div>
+					// <div class="form-group">
+					// 	<label for="signupBranch">Branch:</label>
+					// 	<select class="form-control" name="signupBranch" required>
+					// 		<option disabled selected>Select One</option>
+					// 		<option>ECE</option>
+					// 		<option>CSE</option>
+					// 		<option>ME</option>
+					// 		<option>EEE</option>
+					// 		<option>CE</option>
+					// 	</select>
+					// </div>
 
-					<div class="form-group">
-						<label for="signupBranch">Branch:</label>
-						<select class="form-control" name="signupBranch" required>
-							<option disabled selected>Select One</option>
-							<option>ECE</option>
-							<option>CSE</option>
-							<option>ME</option>
-							<option>EEE</option>
-							<option>CE</option>
-						</select>
-					</div>
+					// <div class="form-group">
+					// 	<label for="signupRollNo" class="control-label">Roll No. :</label>
+					// 	<input type="text" name="signupRollNo" class="form-control" placeholder="Your Roll No." required>
+					// </div>
 
-					<div class="form-group">
-						<label for="signupRollNo" class="control-label">Roll No. :</label>
-						<input type="text" name="signupRollNo" class="form-control" placeholder="Your Roll No." required>
-					</div>
-
-					<div class="form-group">
-						<label for="signupGender">Select Gender:</label>
-						<select class="form-control" name="signupGender" required>
-							<option disabled selected>Select One</option>
-							<option>Male</option>
-							<option>Female</option>
-						</select>
-					</div>					
+					// <div class="form-group">
+					// 	<label for="signupGender">Select Gender:</label>
+					// 	<select class="form-control" name="signupGender" required>
+					// 		<option disabled selected>Select One</option>
+					// 		<option>Male</option>
+					// 		<option>Female</option>
+					// 	</select>
+					// </div>					
 					
+					// <label class="control-label" for="signupAddress">Address :</label>
+					// <div class="form-group"><textarea name="signupAddress" wrap="hard" Placeholder="Address" class="form-control" required></textarea></div>
+					
+	
+	?>				
 					<div class="form-group">
 						<label for="signupPassword" class="control-label">Password :</label>
 						<input type="password" name="signupPassword" class="form-control" placeholder="Password" required>
@@ -179,8 +187,8 @@
 					</div>
 					
 					
-					<label class="control-label" for="signupAddress">Address :</label>
-					<div class="form-group"><textarea name="signupAddress" wrap="hard" Placeholder="Address" class="form-control" required></textarea></div>
+					<label class="control-label" for="signupAbout">About :</label>
+					<div class="form-group"><textarea name="signupAbout" wrap="hard" Placeholder="Tell Us About Yourself" initial=" " class="form-control" ></textarea></div>
 					
 					
 					<div><?php echo $signupResponse;?></div><br />
@@ -202,20 +210,38 @@
 		<?php require_once("./includes/footer.php");?>
 	
 		<script>
+
 		$('input[name="signupUsername"]').on('input', function(e) {
      		
-			$.ajax({
-				type: 'post',
-				data: {usernamecheck: $(this).val()},
-				success: (response)=>{
-					if(response == 1 || $(this).val().length < 6) 
-						$(this).removeClass("is-valid").addClass("is-invalid");
-					else if(response >= 0 )
-						$(this).removeClass("is-invalid").addClass("is-valid");
-				}
-				
-			});
+			$('button[name="signup_submit"]').attr('disabled', true);	
+			if($(this).val().length<6)
+			{
+				$(this).removeClass("is-valid").addClass("is-invalid");
+				$('#error-username').html('Username should be more than six characters');
+					
+			}
+			else{
+				$.ajax({
+					type: 'post',
+					data: {usernamecheck: $(this).val()},
+					success: (response)=>{
+						if(response >= 1) 
+						{
+							$(this).removeClass("is-valid").addClass("is-invalid");					
+							$('#error-username').html('Username Already in Use');
+						}
+						else if(response == 0 )
+						{
+							$(this).removeClass("is-invalid").addClass("is-valid");
+							$('button[name="signup_submit"]').attr('disabled', false);	
+						}
+					}
+					
+				});
+			}
 		});
+
+		
 	</script>
 	
 	</body>
