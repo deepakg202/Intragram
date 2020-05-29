@@ -12,8 +12,8 @@
 	<?php require_once("./includes/header.php");?>
 	<br /><br /><br /><br /><br />
 	<?php
-		if(isset($_SESSION['user'])){ 
-			$user = $_SESSION['user'];
+		// if(isset($_SESSION['user'])){ 
+		// 	$user = $_SESSION['user'];
 
 			?>
 
@@ -43,10 +43,12 @@
 			</div>
 		</div>
 	</section>
-	<?php }
-		else{
-			header('location: ./login.php');
-		}
+	<?php 
+		// }
+		// else{
+		// 	header('location: ./login.php');
+		// }
+	
 		?>
 
 	<!-- NEW POST BUTTON -->
@@ -78,7 +80,8 @@
 			
 			var fullpost = ($($(this).find('.card-text')));
 			$.get($(this).attr('href'), null, function(text){
-				fullpost.html($($(text).find('.blogcontent')).html());
+				fullpost.html($($(text).find('#blogcontent')).html());
+				
 			});
 						
 			return false;

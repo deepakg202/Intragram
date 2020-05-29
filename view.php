@@ -9,6 +9,7 @@
 		
 		<?php require_once("./includes/header.php");?>
 		<br /><br /><br /><br /><br />
+		
 		<?php
 		if(isset($_SESSION['user']) && isset($_GET['pid'])){ 
 			$user = $_SESSION['user'];
@@ -25,7 +26,8 @@
 
                         <div class="jumbotron display-4"><?php echo $post['Heading'];?></div>
 						   <hr>
-						   <div class="blogcontent">
+		
+						   <div id="blogcontent">
                         		<?php printContents($post['BlogId']) ?>
 							</div>
 							<br><br><br>
@@ -34,9 +36,9 @@
 					}
                     else
                     {
-                        echo '<div class="jumbotron">Post Not Found </div>';
+                        echo '<div class="jumbotron display-4"><div id="blogcontent">Post Not Found </div></div>';
                         echo '<br><br><br>';
-                        header('./index.php');
+                        //header('./index.php');
                     }
                 ?>
 				
@@ -44,7 +46,14 @@
 		</section>
 		<?php }
 		else{
-			header('location: ./login.php');
+			?>
+				<div class="container jumbotron display-4">
+					<div id="blogcontent">Login To View Content</div>
+				</div>
+
+			<?php
+			//header('location: ./login.php');
+			//exit();
 		}
 		?>
 	
