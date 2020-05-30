@@ -1,7 +1,7 @@
 <?php
     
     define ('ROOT_PATH', realpath(dirname(__DIR__)));
-	
+	define ('SITE_NAME', $_SERVER['HTTP_HOST']);
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -115,7 +115,7 @@
                 <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $blogData[$i]['Heading'];?></h5>
-                    <div class="card-text">
+                    <div class="card-text post-content">
                         Click to View Post
                     </div>
                 </div>
@@ -124,7 +124,7 @@
             <div class="card-footer d-flex justify-content-around text-center">
                 <a href="#" class="btn "><i class="fa fa-thumbs-up"></i> Like</a>
 
-                <a href="#" class="btn"><i class="fa fa-comment"></i> Comment</a>
+                <a href="./view.php?pid=<?php echo $filename; ?>#Comments" class="btn"><i class="fa fa-comment"></i> Comment</a>
 
                 <a href="#" class="btn"><i class="fa fa-paperclip"></i> Share</a>
             </div>

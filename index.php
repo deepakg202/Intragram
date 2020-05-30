@@ -77,13 +77,12 @@
 	<script>
 		$(".blogcard").on('click', function(e){
 			e.stopPropagation();
-			
-			var fullpost = ($($(this).find('.card-text')));
+			var fullpost = ($($(this).find('.post-content')));
+			fullpost.html('<div class="d-flex align-items-center"><p>Loading...</p><div class="spinner-border ml-auto"></div></div>');
 			$.get($(this).attr('href'), null, function(text){
-				fullpost.html($($(text).find('#blogcontent')).html());
-				
+				fullpost.html($($(text).find('#blogcontent')).html());			
 			});
-						
+			fullpost.removeClass('post-content');			
 			return false;
 		});
 	</script>

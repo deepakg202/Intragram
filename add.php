@@ -44,8 +44,9 @@
 				fwrite($blogfile, $_POST['postBody']);
 				fclose($blogfile);
 
-				$uploadResponse = '<div class="jumbotron container">Posted Successfully</div>';
-				header("location: index.php");
+				echo '<div class="jumbotron container display-3">Posted Successfully !<br>Redirecting to Post...</div>';
+				echo '<meta http-equiv="refresh" content="3;url=./view.php?pid='.$blogname.'"> ';
+			
 			}
 			else
 			{
@@ -123,6 +124,7 @@
 
 		
 		<?php require_once("./includes/footer.php");?>
+	
 		
 	</body>
 </html>

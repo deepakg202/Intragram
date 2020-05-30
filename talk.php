@@ -1,9 +1,25 @@
+<?php 
+	require_once("./includes/config.php");
+
+// Sending Messages
+	if(isset($_POST['message_submit']) && !empty($_POST['chatMessage']))
+	{
+		unset($_POST['message_submit']);
+		$chatfile = fopen(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt", 'a');
+		$chatMessage = str_replace("}}:{{", " ", sanitizeString($_POST['chatMessage']));
+		fwrite($chatfile, ''.$uid.'}}:{{'.$chatMessage.''."\r\n");
+		fclose($chatfile);
+		header('Location: '.$_SERVER['PHP_SELF']);
+		exit();
+			
+		
+	}	
+?>
 <!DOCTYPE HTML>
 <html>
 
 <head>
-	<title>Intragram</title>
-	<?php require_once("./includes/config.php");?>
+	<title>Intragram-Talk</title>
 	<?php require_once("./includes/includers.php"); ?>
 </head>
 
@@ -39,15 +55,7 @@
 				
 				
 
-				// Sending Messages
-				if(isset($_POST['message_submit']) && !empty($_POST['chatMessage']))
-				{
-					$chatfile = fopen(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt", 'a');
-					$chatMessage = str_replace("}}:{{", " ", sanitizeString($_POST['chatMessage']));
-					fwrite($chatfile, ''.$uid.'}}:{{'.$chatMessage.''."\r\n");
-					fclose($chatfile);		
-					unset($_POST);	
-				}	
+
 			?>
 				<div class="container pt-3">
 				<div class="row">
@@ -170,7 +178,16 @@
 	<?php require_once("./includes/footer.php");?>
 
 	<script>
-		$('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+		$(document).ready(()=>{
+			
+			setInterval(() => {
+				$("#chatbox").load(location.href + " #chatbox");						
+			}, 2000);
+			$('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);			
+			
+		});
+
+	
 	</script>
 </body>
 
