@@ -21,7 +21,7 @@ if(isset($_POST['cnf_delete']) && isset($_GET['pid']) && isset($_SESSION['user']
 	$filename = sanitizeString($_GET['pid']);
 
 	try{
-		getDBconn()->exec("DELETE FROM blog WHERE BlogId='$filename'");
+		getDBconn()->exec("DELETE FROM blog WHERE blog_id='$filename'");
 
 		if(file_exists(ROOT_PATH."/uploads/blog_comments/${filename}-comments.txt")) {  
 			unlink(ROOT_PATH."/uploads/blog_comments/${filename}-comments.txt");
@@ -66,7 +66,7 @@ if(isset($_POST['cnf_delete']) && isset($_GET['pid']) && isset($_SESSION['user']
                 
 				<?php 
                     $pid = sanitizeString($_GET['pid']);
-                    $post = getDBconn()->prepare('SELECT * FROM blog WHERE BlogId=?');
+                    $post = getDBconn()->prepare('SELECT * FROM blog WHERE blog_id=?');
 					
 					if($post->execute([$pid]) && $post = $post->fetch())
                     { 
@@ -103,7 +103,7 @@ if(isset($_POST['cnf_delete']) && isset($_GET['pid']) && isset($_SESSION['user']
 						}
 					}?>
 	
-					<div class="jumbotron display-4"><?php echo $post['Heading'];?></div>
+					<div class="jumbotron display-4"><?php echo $post['heading'];?></div>
 					
 						
 					<?php 
@@ -127,7 +127,7 @@ if(isset($_POST['cnf_delete']) && isset($_GET['pid']) && isset($_SESSION['user']
 						   <hr>
 		
 						   <div id="blogcontent">
-                        		<?php printContents($post['BlogId']) ?>
+                        		<?php printContents($post['blog_id']) ?>
 							</div>
 							<br><br><br>
 
@@ -142,7 +142,7 @@ if(isset($_POST['cnf_delete']) && isset($_GET['pid']) && isset($_SESSION['user']
 
 						
 						<?php
-							CommentsArea($post['BlogId']);
+							CommentsArea($post['blog_id']);
 						}	
 					}
                     else
@@ -177,7 +177,7 @@ if(isset($_POST['cnf_delete']) && isset($_GET['pid']) && isset($_SESSION['user']
 			
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$(this).attr("title", "<?=$post['Heading'];?>-Intragram");
+				$(this).attr("title", "<?=$post['heading'];?>-Intragram");
 			});
 		</script>
 	</body>
@@ -211,12 +211,12 @@ function CommentsArea($pid)
 			<?php for($i=0;$i<count($allComm);$i++)
 			{
 				$com = explode("}}:{{", $allComm[$i]);
-				$userdet = getDBconn()->query('SELECT Name, Username, ProfilePic FROM users WHERE id='.$com[0])->fetch();
+				$userdet = getDBconn()->query('SELECT name, username, profile_pic FROM users WHERE id='.$com[0])->fetch();
 				
 				$time = new DateTime("@$com[2]");
 				?>
 				<div class="d-flex flex-row border mb-3">
-					<div class="p-2 bd-highlight"><a href="./profile.php"><img class="rounded-circle img-fluid" style="width: 64px;height: 64px;" src="<?=$userdet['ProfilePic']?>"></a></div>
+					<div class="p-2 bd-highlight"><a href="./profile.php"><img class="rounded-circle img-fluid" style="width: 64px;height: 64px;" src="<?=$userdet['profile_pic']?>"></a></div>
 					<div class="p-2 border-left flex-grow-1">
 						<div class="card-text"><?=$com[1]?></div>
 						<div class="text-right card-footer"><?=$time->format('d-M-Y h:m A')?></div>

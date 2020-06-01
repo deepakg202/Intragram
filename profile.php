@@ -25,13 +25,13 @@
 					<div class="sticky-top" style="top: 100px;">
 						
 						<div class="profile-pic">
-							<img class=" rounded-circle p-2 img-fluid" src="<?php echo $user['ProfilePic'];?>" style="height: 256px; width: 256px;" onerror="this.src='images/no-image.png';" />
+							<img class=" rounded-circle p-2 img-fluid" src="<?php echo $user['profile_pic'];?>" style="height: 256px; width: 256px;" onerror="this.src='images/no-image.png';" />
 						</div>
 
 
 						<div class="profile-detail pt-2">
-							<h2><?php echo $user['Name'];?></h2>
-							<h4><?php echo $user['About'];?></h4>
+							<h2><?php echo $user['name'];?></h2>
+							<h4><?php echo $user['about'];?></h4>
 						</div>
 						<br />
 						<div class="profile-nav py-3">

@@ -49,7 +49,7 @@
   
     function checkUser($connection, $email, $passwd)
     {
-        $stmt = $connection->prepare("SELECT * FROM users WHERE Email= :email AND Password= :passwd");
+        $stmt = $connection->prepare("SELECT * FROM users WHERE email= :email AND password= :passwd");
         $stmt->execute([":email" => $email, ":passwd" => $passwd]);
         return $stmt;
     }
@@ -63,7 +63,7 @@
         else if($who == 'all')
             $posts = getDBconn()->query("SELECT COUNT(*) FROM blog")->fetchColumn();
         else
-            $posts = getDBconn()->query("SELECT COUNT(*) FROM blog WHERE UserId = '$who'")->fetchColumn();
+            $posts = getDBconn()->query("SELECT COUNT(*) FROM blog WHERE user_id = '$who'")->fetchColumn();
         
 
         if($posts == 0)
@@ -91,18 +91,18 @@
             $offset = ($currentpage - 1) * $postPerPage;
 
             if($who == 'all')
-                $blogData = $connection->prepare("SELECT * FROM blog ORDER BY Created DESC LIMIT $offset, $postPerPage");
+                $blogData = $connection->prepare("SELECT * FROM blog ORDER BY created DESC LIMIT $offset, $postPerPage");
             else
-                $blogData = $connection->prepare("SELECT * FROM blog WHERE UserId = $who ORDER BY Created DESC LIMIT $offset, $postPerPage");
+                $blogData = $connection->prepare("SELECT * FROM blog WHERE user_id = $who ORDER BY created DESC LIMIT $offset, $postPerPage");
             
             $blogData->execute();
             $blogData = $blogData->fetchAll();
             
             for($i=0;$i < count($blogData);$i++){
-                $uid = $blogData[$i]['UserId'];    
+                $uid = $blogData[$i]['user_id'];    
                 $name = $connection->query("SELECT Name FROM users WHERE id= '$uid'")->fetchColumn();
                 
-                $filename = $blogData[$i]['BlogId'];
+                $filename = $blogData[$i]['blog_id'];
                 
                 if(!file_exists(ROOT_PATH.'/uploads/blog/'.$filename.'.md'))
                     continue;
@@ -112,12 +112,12 @@
         <div class="card text-dark p-1 mb-4">
             <div class="card-header clearfix">
                 <div class="float-left">Posted By: <?php echo $name;?></div>
-                <div class="float-right"><?php echo $blogData[$i]['Created']?></div>
+                <div class="float-right"><?php echo $blogData[$i]['created']?></div>
             </div>
             <a class="blogcard" href="./view.php?pid=<?php echo $filename; ?>" style="color:unset; text-decoration: unset;">
                 <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $blogData[$i]['Heading'];?></h5>
+                    <h5 class="card-title"><?php echo $blogData[$i]['heading'];?></h5>
                     <div class="card-text post-content">
                         Click to View Post
                     </div>

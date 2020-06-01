@@ -40,7 +40,7 @@
 				if(isset($_GET['rec']) && !empty($_GET['rec']))
 				{
 					$rec = sanitizeString($_GET['rec']);	
-					$toid = getDBconn()->query("SELECT id FROM users WHERE Username='$rec'")->fetchColumn();	
+					$toid = getDBconn()->query("SELECT id FROM users WHERE username='$rec'")->fetchColumn();	
 					$uid = $user['id'];
 				
 					if($toid == $uid || empty($toid))
@@ -118,7 +118,7 @@
 											$bg = 'bg-primary text-right';
 											$aname = 'You';
 										}else{
-											$aname = getDBconn()->query("SELECT Name FROM users WHERE id='$author'")->fetchColumn();
+											$aname = getDBconn()->query("SELECT name FROM users WHERE id='$author'")->fetchColumn();
 											$bg = 'bg-dark text-left';
 						
 										}
@@ -198,7 +198,7 @@
 <?php 
 	function userSearch($connection, $term)
 	{
-		$quer = $connection->prepare('SELECT id, Name, Username, ProfilePic FROM users WHERE Username LIKE :term');
+		$quer = $connection->prepare('SELECT id, name, username, profile_pic FROM users WHERE username LIKE :term');
 		echo '<div class="p-2 m-2 rounded bg-dark">Searching :- \''.$term.'\'</div>';
 		if($quer->execute([":term"=> "%".$term."%"]))
 		{
@@ -206,7 +206,7 @@
 			{
 				if($d['id']==$_SESSION['user']['id'])
 					continue;
-				echo '<div class="p-3 border m-2"><a href="'.$_SERVER['PHP_SELF'].'?rec='.$d['Username'].'">'.$d['Username'].'</a></div>';
+				echo '<div class="p-3 border m-2"><a href="'.$_SERVER['PHP_SELF'].'?rec='.$d[username].'">'.$d[username].'</a></div>';
 			}
 		}
 		else
@@ -220,19 +220,19 @@
 
 	function getMiniProfile($prof)
 	{
-		$reci = getDBconn()->prepare("SELECT Name, Username, About, ProfilePic FROM users WHERE id=?");
+		$reci = getDBconn()->prepare("SELECT name, username, about, profile_pic FROM users WHERE id=?");
 		if($reci->execute([$prof]))
 		{
 			$reci = $reci->fetch();
 			?>
 			<div class="mini-profile text-center pt-4 border">
 				<div class="profile-pic">
-				<img class="img-fluid rounded-circle bg-dark p-2" src="<?php echo $reci['ProfilePic'];?>" style="height: 128px; width: 128px;" onerror="this.src='images/no-image.png';" />
+				<img class="img-fluid rounded-circle bg-dark p-2" src="<?php echo $reci['profile_pic'];?>" style="height: 128px; width: 128px;" onerror="this.src='images/no-image.png';" />
 				</div>
 				<div class="profile-detail pt-2">
-					<h2><?php echo $reci['Name'];?></h2>
-					<h3><?php echo $reci['Username'];?></h3>
-					<h4><?php echo $reci['About'];?></h4>
+					<h2><?php echo $reci['name'];?></h2>
+					<h3><?php echo $reci['username'];?></h3>
+					<h4><?php echo $reci['about'];?></h4>
 				</div>	
 			</div>
 		<?php

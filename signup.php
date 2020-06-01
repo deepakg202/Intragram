@@ -4,9 +4,9 @@
 	if(isset($_POST['usernamecheck']))
 	{
 		$uname = sanitizeString($_POST['usernamecheck']);
-		$q = getDBconn()->prepare("SELECT Count(Username) FROM users WHERE Username='$uname'");
+		$q = getDBconn()->prepare("SELECT Count(username) FROM users WHERE username='$uname'");
 		
-		if($q->execute([$uname]))
+		if($q->execute())
 			echo $q->fetchColumn();
 		else
 			echo 'Err';
@@ -59,13 +59,13 @@
 				
 				$profilepic = "https://api.adorable.io/avatars/512/".sanitizeString($username);
 				
-				$chk_eml = getDBconn()->prepare("SELECT COUNT(Email) FROM users WHERE Email= :email");
+				$chk_eml = getDBconn()->prepare("SELECT COUNT(email) FROM users WHERE email= :email");
 				$chk_eml->execute([":email"=>$email]);
 
-				$chk_cnct = getDBconn()->prepare("SELECT COUNT(Contact) FROM users WHERE Contact= :contact");
+				$chk_cnct = getDBconn()->prepare("SELECT COUNT(contact) FROM users WHERE contact= :contact");
 				$chk_cnct->execute([":contact"=>$contact]);
 
-				$chk_uname = getDBconn()->prepare("SELECT COUNT(Username) FROM users WHERE Username= :username");
+				$chk_uname = getDBconn()->prepare("SELECT COUNT(username) FROM users WHERE username= :username");
 				$chk_uname->execute([":username"=>$username]);
 				
 				if($chk_uname->fetchColumn() != 0)
@@ -79,7 +79,7 @@
 					$signupResponse = '<p class="text-danger">Contact No. Already Exist.</p>';
 				}
 			    else{
-			        $quer = "INSERT INTO users (Name, Username, Email, Password, Branch, Designation, Contact, Gender, Address, RollNo, ProfilePic, About) ";
+			        $quer = "INSERT INTO users (name, username, email, password, branch, designation, contact, gender, address, roll_no, profile_pic, about) ";
 			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 					
 					$addUser = getDBconn()->prepare($quer);

@@ -12,7 +12,7 @@
 				<?php
 				if (isset($_SESSION['user'])) {
 				$user = $_SESSION['user'];
-				$fname = explode(' ', $user['Name']);
+				$fname = explode(' ', $user['name']);
 				$fname = $fname[0];
 				?>
 

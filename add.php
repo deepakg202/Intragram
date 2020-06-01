@@ -37,7 +37,7 @@
 			$postHeading = sanitizeString($_POST['postHeading']);
 			$blogname = $user['id'].'_'.time();
 			
-			$addquer = getDBconn()->prepare("INSERT INTO blog (BlogId, Heading, UserId) VALUES (? , ? , ?)");
+			$addquer = getDBconn()->prepare("INSERT INTO blog (blog_id, heading, user_id) VALUES (? , ? , ?)");
 			if($addquer->execute([$blogname, $postHeading, $user['id']]))
 			{
 				$blogfile = fopen(ROOT_PATH."/uploads/blog/${blogname}.md", 'w');
