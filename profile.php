@@ -23,7 +23,7 @@
 				<div class="col-md-3">
 
 					<div class="sticky-top" style="top: 100px;">
-
+						
 						<div class="profile-pic">
 							<img class=" rounded-circle p-2 img-fluid" src="<?php echo $user['ProfilePic'];?>" style="height: 256px; width: 256px;" onerror="this.src='images/no-image.png';" />
 						</div>
@@ -53,7 +53,7 @@
 
 
 					<?php 
-							printBlog(getDBconn(), $user['Username'], 3);
+							printBlog(getDBconn(), $user['id'], 3);
 							
 					?>
 

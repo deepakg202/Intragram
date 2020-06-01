@@ -15,6 +15,9 @@
             $database="intragram";
             try{
                 $connection = new PDO("mysql:host=$hostname;dbname=$database",$user,$passwd);
+                $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                 
                 return $connection;
             }
             catch(PDOException $e)
@@ -97,7 +100,7 @@
             
             for($i=0;$i < count($blogData);$i++){
                 $uid = $blogData[$i]['UserId'];    
-                $name = $connection->query("SELECT Name FROM users WHERE Username= '$uid'")->fetchColumn();
+                $name = $connection->query("SELECT Name FROM users WHERE id= '$uid'")->fetchColumn();
                 
                 $filename = $blogData[$i]['BlogId'];
                 

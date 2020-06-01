@@ -38,13 +38,13 @@
 			$blogname = $user['id'].'_'.time();
 			
 			$addquer = getDBconn()->prepare("INSERT INTO blog (BlogId, Heading, UserId) VALUES (? , ? , ?)");
-			if($addquer->execute([$blogname, $postHeading, $user['Username']]))
+			if($addquer->execute([$blogname, $postHeading, $user['id']]))
 			{
 				$blogfile = fopen(ROOT_PATH."/uploads/blog/${blogname}.md", 'w');
 				fwrite($blogfile, $_POST['postBody']);
 				fclose($blogfile);
 
-				echo '<div class="jumbotron container display-3">Posted Successfully !<br>Redirecting to Post...</div>';
+				echo '<div class="jumbotron container display-4">Posted Successfully !<br>Redirecting to Your Post....</div>';
 				echo '<meta http-equiv="refresh" content="3;url=./view.php?pid='.$blogname.'"> ';
 			
 			}
