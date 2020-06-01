@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 01, 2020 at 01:53 PM
+-- Generation Time: Jun 01, 2020 at 02:33 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -60,7 +60,7 @@ CREATE TABLE `users` (
   `designation` text,
   `branch` text,
   `gender` text,
-  `contact` int(11) NOT NULL,
+  `contact` text NOT NULL,
   `about` text,
   `address` text,
   `password` text NOT NULL,
@@ -72,10 +72,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `roll_no`, `email`, `profile_pic`, `designation`, `branch`, `gender`, `contact`, `about`, `address`, `password`, `created`) VALUES
-(1, 'Deepak Gupta', 'deepakgupta191199', '', 'b180081@nitsikkim.ac.in', '', 'STUDENT', 'NuStart', 'MALE', 123, '', '123', '202cb962ac59075b964b07152d234b70', '2020-05-27 13:23:27'),
-(3, 'Deepak Gupta', 'deepakgupta789', '123', 'b180079@nitsikkim.ac.in', '', 'STUDENT', 'ECE', 'MALE', 1233, '', '12312', '202cb962ac59075b964b07152d234b70', '2020-05-27 13:23:27'),
-(13, 'SuperMan', 'superman123', '', 'superman@gmail.com', 'https://api.adorable.io/avatars/512/superman123', '', '', '', 9900, 'SuperHero', '', '202cb962ac59075b964b07152d234b70', '2020-06-01 13:50:11'),
-(12, 'Ghost', 'deepakfgup', '', 'df@gmail.com', 'https://api.adorable.io/avatars/512/deepakfgup', '', '', '', 2424, 'Godds', '', 'c20ad4d76fe97759aa27a0c99bff6710', '2020-05-30 16:15:14');
+(1, 'Deepak Gupta', 'deepakgupta191199', '', 'b180081@nitsikkim.ac.in', '', 'STUDENT', 'NuStart', 'MALE', '123', '', '123', '202cb962ac59075b964b07152d234b70', '2020-05-27 13:23:27'),
+(3, 'Deepak Gupta', 'deepakgupta789', '123', 'b180079@nitsikkim.ac.in', '', 'STUDENT', 'ECE', 'MALE', '1233', '', '12312', '202cb962ac59075b964b07152d234b70', '2020-05-27 13:23:27'),
+(13, 'SuperMan', 'superman123', '', 'superman@gmail.com', 'https://api.adorable.io/avatars/512/superman123', '', '', '', '9900', 'SuperHero', '', '202cb962ac59075b964b07152d234b70', '2020-06-01 13:50:11'),
+(12, 'Ghost', 'deepakfgup', '', 'df@gmail.com', 'https://api.adorable.io/avatars/512/deepakfgup', '', '', '', '2424', 'Godds', '', 'c20ad4d76fe97759aa27a0c99bff6710', '2020-05-30 16:15:14');
 
 --
 -- Indexes for dumped tables

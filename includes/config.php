@@ -9,6 +9,22 @@
 
     function getDBconn()
     {
+        
+        try{
+            $db = parse_url(getenv("DATABASE_URL"));
+            $pdo = @new PDO("pgsql:" . sprintf("host=%s;port=%s;user=%s;password=%s;dbname=%s",
+                $db["host"],
+                $db["port"],
+                $db["user"],
+                $db["pass"],
+                ltrim($db["path"], "/")
+            ));
+            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+
+        }catch(PDOException $a)
+        {
             $hostname="localhost";
 			$user="root";
             $passwd="123";
@@ -24,7 +40,12 @@
             {
                 die("Connection failed: " . $e->getMessage());
             }
-           
+        }
+            
+
+            
+
+
     }
     
     

@@ -36,7 +36,7 @@ if(isset($_POST['cnf_delete']) && isset($_GET['pid']) && isset($_SESSION['user']
 	}
 	
 
-	//header("refresh: 0");
+	header("location: ./index.php");
 	exit();
 }
 
