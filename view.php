@@ -162,7 +162,7 @@ if(isset($_POST['cnf_delete']) && isset($_GET['pid']) && isset($_SESSION['user']
 			}
 			?>
 				<div class="container jumbotron display-4">
-					<div id="blogcontent"><a href="./login.php">Login</a> To View Content</div>
+					<div id="blogcontent"><div class="text-danger"><a href="./login.php">Login</a> To View Content</div></div>
 				</div>
 
 			<?php
@@ -216,7 +216,7 @@ function CommentsArea($pid)
 				$time = new DateTime("@$com[2]");
 				?>
 				<div class="d-flex flex-row border mb-3">
-					<div class="p-2 bd-highlight"><a href="./profile.php"><img class="rounded-circle img-fluid" style="width: 64px;height: 64px;" src="<?=$userdet['profile_pic']?>"></a></div>
+					<div class="p-2 bd-highlight"><a href="./profile.php"><img class="rounded-circle img-fluid" onerror="this.src='images/no-image.png';" style="width: 64px;height: 64px;" src="<?=$userdet['profile_pic']?>"></a></div>
 					<div class="p-2 border-left flex-grow-1">
 						<div class="card-text"><?=$com[1]?></div>
 						<div class="text-right card-footer"><?=$time->format('d-M-Y h:m A')?></div>

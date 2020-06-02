@@ -9,57 +9,54 @@
 
     function getDBconn()
     {
-        
         try{
-            $db = parse_url(getenv("DATABASE_URL"));
-            $pdo = @new PDO("pgsql:" . sprintf("host=%s;port=%s;user=%s;password=%s;dbname=%s",
-                $db["host"],
-                $db["port"],
-                $db["user"],
-                $db["pass"],
-                ltrim($db["path"], "/")
-            ));
-            $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $pdo;
-
-        }catch(PDOException $a)
-        {
-            $hostname="sql202.epizy.com";
-			$user="epiz_25709434";
-            $passwd="2lWWKk4OemA";
-            $database="epiz_25709434_intragram";
-            try{
-                $connection = new PDO("mysql:host=$hostname;dbname=$database",$user,$passwd);
-                $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                 
-                return $connection;
-            }
-            catch(PDOException $e)
-            {
                 $hostname="localhost";
                 $user="root";
                 $passwd="123";
                 $database="intragram";
-                try{
-                    $connection = new PDO("mysql:host=$hostname;dbname=$database",$user,$passwd);
-                    $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    
-                    return $connection;
-                }
-                catch(PDOException $e)
-                {
-                    die("Connection failed: " . $e->getMessage());
-                }
+                $connection = new PDO("mysql:host=$hostname;dbname=$database",$user,$passwd);
+                $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                
+                return $connection;
             }
-        }
+            catch(PDOException $e)
+            {
+                try{
+                $hostname="sql202.epizy.com";
+                $user="epiz_25709434";
+                $passwd="2lWWKk4OemA";
+                $database="epiz_25709434_intragram";
             
+                $connection = new PDO("mysql:host=$hostname;dbname=$database",$user,$passwd);
+                $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);     
+                return $connection;
+                }
+            catch(PDOException $e)
+            {    
+                try{
+                    $db = parse_url(getenv("DATABASE_URL"));
+                    $pdo = @new PDO("pgsql:" . sprintf("host=%s;port=%s;user=%s;password=%s;dbname=%s",
+                        $db["host"],
+                        $db["port"],
+                        $db["user"],
+                        $db["pass"],
+                        ltrim($db["path"], "/")
+                    ));
+                    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    return $pdo;
+        
+                }catch(PDOException $a)
+                {
+                    die('Error '.$e);
+                }
+            }    
 
-            
-
-
+        }    
+                
+                
     }
     
     
@@ -135,7 +132,7 @@
             
             for($i=0;$i < count($blogData);$i++){
                 $uid = $blogData[$i]['user_id'];    
-                $name = $connection->query("SELECT Name FROM users WHERE id= '$uid'")->fetchColumn();
+                $udata = $connection->query("SELECT name, profile_pic FROM users WHERE id= '$uid'")->fetch();
                 
                 $filename = $blogData[$i]['blog_id'];
                 
@@ -146,11 +143,11 @@
 
         <div class="card text-dark p-1 mb-4">
             <div class="card-header clearfix">
-                <div class="float-left">Posted By: <?php echo $name;?></div>
+                <div class="float-left"><a href="./profile.php"><img class="rounded-circle img-fluid" onerror="this.src='images/no-image.png';" style="height: 32px; width: 32px;" src="<?=$udata['profile_pic']?>"> <?=$udata['name']?></a></div>
                 <div class="float-right"><?php echo $blogData[$i]['created']?></div>
             </div>
             <a class="blogcard" href="./view.php?pid=<?php echo $filename; ?>" style="color:unset; text-decoration: unset;">
-                <img class="card-img" src="https://via.placeholder.com/1366x768" alt="Card image">
+                <img class="card-img" onerror="this.src='images/no-image.png';" src="https://via.placeholder.com/1366x768" alt="Card image">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $blogData[$i]['heading'];?></h5>
                     <div class="card-text post-content">
@@ -164,7 +161,7 @@
 
                 <a href="./view.php?pid=<?php echo $filename; ?>#Comments" class="btn"><i class="fa fa-comment"></i> Comment</a>
 
-                <a href="#" class="btn"><i class="fa fa-paperclip"></i> Share</a>
+                <a href="#" class="btn"><i class="fa fa-paperclip"></i> Save</a>
             </div>
         </div>
 

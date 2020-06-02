@@ -17,8 +17,8 @@
 				?>
 
 				<li class="nav-item"><a href="./profile.php" class="nav-link">
-					<i class="fa fa-user fa-2x fa-fw " data-toggle="tooltip" title="Profile"></i>
-			        <span class="d-none d-md-inline">Hi, <?php echo $fname;?></span>
+					<img src="<?=$user['profile_pic']?>" class="rounded-circle img-fluid bg-white" style="height: 32px; width:32px;" onerror="this.src='images/no-image.png';" data-toggle="tooltip" title="Profile">
+			        <span class="d-none d-md-inline pl-1"> Hi, <?php echo $fname;?></span>
 			    </a></li>
 
 			    <li class="nav-item"><a href="./talk.php" class="nav-link">
