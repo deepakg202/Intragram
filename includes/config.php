@@ -25,10 +25,10 @@
 
         }catch(PDOException $a)
         {
-            $hostname="localhost";
-			$user="root";
-            $passwd="123";
-            $database="intragram";
+            $hostname="sql202.epizy.com";
+			$user="epiz_25709434";
+            $passwd="2lWWKk4OemA";
+            $database="epiz_25709434_intragram";
             try{
                 $connection = new PDO("mysql:host=$hostname;dbname=$database",$user,$passwd);
                 $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -38,7 +38,21 @@
             }
             catch(PDOException $e)
             {
-                die("Connection failed: " . $e->getMessage());
+                $hostname="localhost";
+                $user="root";
+                $passwd="123";
+                $database="intragram";
+                try{
+                    $connection = new PDO("mysql:host=$hostname;dbname=$database",$user,$passwd);
+                    $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                    return $connection;
+                }
+                catch(PDOException $e)
+                {
+                    die("Connection failed: " . $e->getMessage());
+                }
             }
         }
             
