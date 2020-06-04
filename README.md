@@ -1,17 +1,20 @@
 # IntraGram 
 ---
-#####This is a simple blogging site especially made to share resources in a local network.
+##### This is a simple blogging site especially made to share resources in a local network.
 
 
-#####Works well without javascript except few things like the Markdown Editor, chats, bootstrap.js dependent ui etc.
+##### Works well without javascript except few things like the Markdown Editor, chats, bootstrap.js dependent ui etc.
 =======
 ---
-####It consists or should consist :
+#### It consists or should consist :
    - [ ] Blog
         - [x] Markdown Editor
-        - [x] Pagination of Blog or Lazy Loading
-        - [ ] Imgur Uploading and Fetching link
-        - [ ] Functional Buttons for Like, Save And Comment
+        - [x] Pagination of Blog or Lazy Loading (Pagination)
+        - [x] Imgur Uploading and Fetching link
+        - [x] Delete Posts 
+        - [ ] Edit Post
+        - [ ] Report Post
+        - [ ] Functional Buttons for Like, Save And Comment (Currently Permanent Comments)
         - [ ] Admin Verification For Posts
         - [ ] Profile Page
    - [ ] Storing Files
@@ -29,12 +32,12 @@
          
 
 ---
-Commit 9 Hosted on [intragram.cf]
+### Hosted on [intragram.cf]
 
-###Markdown Editor, Powered By EasyMDE
+### Markdown Editor, Powered By EasyMDE
 ---
 
-##That's All !:joy:!
+## That's All !:joy:!
 ---
 
 

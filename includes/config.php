@@ -144,12 +144,12 @@
         <div class="card text-dark p-1 mb-4">
             <div class="card-header clearfix">
                 <div class="float-left"><a href="./profile.php"><img class="rounded-circle img-fluid" onerror="this.src='images/no-image.png';" style="height: 32px; width: 32px;" src="<?=$udata['profile_pic']?>"> <?=$udata['name']?></a></div>
-                <div class="float-right"><?php echo $blogData[$i]['created']?></div>
+                <div class="float-right"><?=$blogData[$i]['created']?></div>
             </div>
-            <a class="blogcard" href="./view.php?pid=<?php echo $filename; ?>" style="color:unset; text-decoration: unset;">
-                <img class="card-img" onerror="this.src='images/no-image.png';" src="https://via.placeholder.com/1366x768" alt="Card image">
+            <a class="blogcard" href="./view.php?pid=<?=$filename?>" style="color:unset; text-decoration: unset;">
+                <img class="card-img" onerror="this.src='images/no-image.png';" src="<?=$blogData[$i]['image_link']?>" alt="Card image">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $blogData[$i]['heading'];?></h5>
+                    <h5 class="card-title"><?=$blogData[$i]['heading']?></h5>
                     <div class="card-text post-content">
                         Click to View Post
                     </div>
