@@ -4,7 +4,7 @@
 
 
 ##### Works well without javascript except few things like the Markdown Editor, chats, bootstrap.js dependent ui etc.
-=======
+======
 ---
 #### It consists or should consist :
    - [ ] Blog

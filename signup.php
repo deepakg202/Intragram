@@ -47,13 +47,8 @@
 				$name = sanitizeString($_POST['signupName']);
 				$username = str_replace(' ','', sanitizeString($_POST['signupUsername']));
 			    $email = sanitizeString($_POST['signupEmail']);
-				$branch = '';//sanitizeString($_POST['signupBranch']);
-			    $desig = '';//sanitizeString($_POST['signupDesig']);
 			    $password = md5(sanitizeString($_POST['signupPassword']));
 			    $contact = sanitizeString($_POST['signupContact']);
-			    $gender = '';//sanitizeString($_POST['signupGender']);
-				$address = '';//sanitizeString($_POST['signupAddress']);
-			    $rollNo = '';//sanitizeString($_POST['signupRollNo']);
 				$about = sanitizeString($_POST['signupAbout']);
 
 				
@@ -79,12 +74,12 @@
 					$signupResponse = '<p class="text-danger">Contact No. Already Exist.</p>';
 				}
 			    else{
-			        $quer = "INSERT INTO users (name, username, email, password, branch, designation, contact, gender, address, roll_no, profile_pic, about) ";
-			        $quer .= "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+			        $quer = "INSERT INTO users (name, username, email, password, contact, profile_pic, about) ";
+			        $quer .= "VALUES (?,?,?,?,?,?,?)";
 					
 					$addUser = getDBconn()->prepare($quer);
 					
-					if($addUser->execute([$name, $username, $email, $password, $branch, $desig, $contact, $gender, $address, $rollNo, $profilepic, $about]))
+					if($addUser->execute([$name, $username, $email, $password, $contact, $profilepic, $about]))
 					{
 						$user = checkUser(getDBconn(), $email, $password);
 						$_SESSION['user'] = $user->fetch();
@@ -135,47 +130,6 @@
 					</div>
 
 
-<?php
-					// <div class="form-group">
-					// 	<label for="signupDesig">Designation:</label>
-					// 	<select class="form-control" name="signupDesig" required>
-					// 		<option disabled selected>Select One</option>
-					// 		<option>Student</option>
-					// 		<option>Teacher</option>
-					// 	</select>
-					// </div>
-
-					// <div class="form-group">
-					// 	<label for="signupBranch">Branch:</label>
-					// 	<select class="form-control" name="signupBranch" required>
-					// 		<option disabled selected>Select One</option>
-					// 		<option>ECE</option>
-					// 		<option>CSE</option>
-					// 		<option>ME</option>
-					// 		<option>EEE</option>
-					// 		<option>CE</option>
-					// 	</select>
-					// </div>
-
-					// <div class="form-group">
-					// 	<label for="signupRollNo" class="control-label">Roll No. :</label>
-					// 	<input type="text" name="signupRollNo" class="form-control" placeholder="Your Roll No." required>
-					// </div>
-
-					// <div class="form-group">
-					// 	<label for="signupGender">Select Gender:</label>
-					// 	<select class="form-control" name="signupGender" required>
-					// 		<option disabled selected>Select One</option>
-					// 		<option>Male</option>
-					// 		<option>Female</option>
-					// 	</select>
-					// </div>					
-					
-					// <label class="control-label" for="signupAddress">Address :</label>
-					// <div class="form-group"><textarea name="signupAddress" wrap="hard" Placeholder="Address" class="form-control" required></textarea></div>
-					
-	
-	?>				
 					<div class="form-group">
 						<label for="signupPassword" class="control-label">Password :</label>
 						<input type="password" name="signupPassword" class="form-control" placeholder="Password" required>
