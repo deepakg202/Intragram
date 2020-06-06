@@ -99,7 +99,7 @@
         
 
         if($posts == 0)
-            echo '<h2 class="jumbotron">Oops! You Haven\'t Posted Anything Yet !</h2>';    
+            echo '<h2 class="jumbotron">Oops! No Posts Found !</h2>';    
         else
         {
             $totalPages = ceil($posts/$postPerPage);
@@ -132,7 +132,7 @@
             
             for($i=0;$i < count($blogData);$i++){
                 $uid = $blogData[$i]['user_id'];    
-                $udata = $connection->query("SELECT name, profile_pic FROM users WHERE id= '$uid'")->fetch();
+                $udata = $connection->query("SELECT name, profile_pic, username FROM users WHERE id= '$uid'")->fetch();
                 
                 $filename = $blogData[$i]['blog_id'];
                 
@@ -143,7 +143,7 @@
 
         <div class="card text-dark p-1 mb-4">
             <div class="card-header clearfix">
-                <div class="float-left"><a href="./profile.php"><img class="rounded-circle img-fluid" onerror="this.src='images/no-image.png';" style="height: 32px; width: 32px;" src="<?=$udata['profile_pic']?>"> <?=$udata['name']?></a></div>
+                <div class="float-left"><a href="./viewuser.php?u=<?=$udata['username']?>"><img class="rounded-circle img-fluid" onerror="this.src='images/no-image.png';" style="height: 32px; width: 32px;" src="<?=$udata['profile_pic']?>"> <?=$udata['name']?></a></div>
                 <div class="float-right"><?=$blogData[$i]['created']?></div>
             </div>
             <a class="blogcard" href="./view.php?pid=<?=$filename?>" style="color:unset; text-decoration: unset;">
