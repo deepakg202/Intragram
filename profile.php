@@ -22,25 +22,25 @@
 			<div class="row">
 				<div class="col-md-3">
 
-					<div class="sticky-top" style="top: 100px;">
+					<div class="sticky-top" style="top: 70px;">
 						
 						<div class="profile-pic">
-							<img class=" rounded-circle p-2 img-fluid" src="<?php echo $user['profile_pic'];?>" style="height: 256px; width: 256px;" onerror="this.src='images/no-image.png';" />
+							<img class=" rounded-circle p-2 img-fluid" src="<?=$user['profile_pic']?>" style="height: 256px; width: 256px;" onerror="this.src='images/no-image.png';" />
 						</div>
 
 
 						<div class="profile-detail pt-2">
-							<h2><?php echo $user['name'];?></h2>
-							<h4><?php echo $user['about'];?></h4>
+							<h2><?=$user['name']?></h2>
+							<h3><?=$user['username']?></h3>
+							<h4><?=$user['about']?></h4>
 						</div>
 						<br />
 						<div class="profile-nav py-3">
 							<div class="d-flex flex-md-column flex-sm-row justify-content-around">
-								<a class="p-2 active-nav" href="index.php"><span class="fa fa-user fa-fw"></span>
-									Overview</a>
-								<a class="p-2" href="log.php"><span class="fa fa-list-alt fa-fw"></span> Activity
-									Log</a>
-								<a class="p-2" href="settings.php"><span class="fa fa-cog fa-fw"></span> Settings</a>
+								<a class="p-2 btn-link disabled active-nav" href="profile.php"><span class="fa fa-file-text fa-fw"></span>
+									Your Posts</a>
+								<a class="p-2" href="editprofile.php"><span class="fa fa-user fa-fw"></span> Edit Profile</a>
+								<a class="p-2" href="changepassword.php"><span class="fa fa-wrench fa-fw"></span> Change Password</a>
 							</div>
 						</div>
 
