@@ -1,19 +1,48 @@
 <?php 
 	require_once("./includes/config.php");
 
-// Sending Messages
-	if(isset($_POST['message_submit']) && !empty($_POST['chatMessage']))
+
+	if(!isset($_SESSION['user']))
 	{
-		unset($_POST['message_submit']);
-		$chatfile = fopen(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt", 'a');
-		$chatMessage = str_replace("}}:{{", " ", sanitizeString($_POST['chatMessage']));
-		fwrite($chatfile, ''.$uid.'}}:{{'.$chatMessage.''."\r\n");
-		fclose($chatfile);
-		header('Location: '.$_SERVER['PHP_SELF']);
+		header('location: login.php');
 		exit();
-			
+	}
+	$user = $_SESSION['user'];
+	$uid = $user['id'];
+
+
+//Searching
+	if(isset($_GET['rec']) && !empty($_GET['rec']))
+	{
+		$rec = sanitizeString($_GET['rec']);	
+		$toid = getDBconn()->query("SELECT id FROM users WHERE username='$rec'")->fetchColumn();	
+		$uid = $user['id'];
+	
+		if($toid == $uid || empty($toid))
+		{	
+			header('location: '.$_SERVER['PHP_SELF']);
+			exit();
+		}else{
+			$arr = [$uid, $toid]; 
+			sort($arr);
+			//Sending Message
+			if(isset($_POST['message_submit']) && !empty($_POST['chatMessage']))
+			{
+				
+				unset($_POST['message_submit']);
+				$chatfile = fopen(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt", 'a');
+				$chatMessage = str_replace("}}:{{", " ", sanitizeString($_POST['chatMessage']));
+				fwrite($chatfile, ''.$uid.'}}:{{'.$chatMessage.''."\r\n");
+				fclose($chatfile);
+				header('location: '.$_SERVER['PHP_SELF'].'?rec='.sanitizeString($_GET['rec']));
+				exit();
+			}
+		}
+	}
+
+	
+// Sending Messages
 		
-	}	
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -27,31 +56,12 @@
 
 	<?php require_once("./includes/header.php");?>
 	
-	<?php
-		if(isset($_SESSION['user'])){ 
-			$user = $_SESSION['user'];
-
-	?>
 
 			<section class="forms">
 			<br /><br /><br />
 
 			<?php
-				if(isset($_GET['rec']) && !empty($_GET['rec']))
-				{
-					$rec = sanitizeString($_GET['rec']);	
-					$toid = getDBconn()->query("SELECT id FROM users WHERE username='$rec'")->fetchColumn();	
-					$uid = $user['id'];
-				
-					if($toid == $uid || empty($toid))
-					{	
-						header('location: '.$_SERVER['PHP_SELF']);
-						exit();
-					}else{
-						$arr = [$uid, $toid]; 
-						sort($arr);
-					}
-				}		
+						
 				
 				
 
@@ -102,13 +112,11 @@
 							if(isset($toid))
 							{
 							
-							
 								if(file_exists(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt"))
 								{		
 									$chatfile = fopen(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt", 'r');								
 									while ($line = fgets($chatfile, 1024)) 
-									{ 
-										
+									{ 						
 										$messageArr = explode('}}:{{', $line);
 										$author = $messageArr[0];
 										$message = $messageArr[1];
@@ -163,15 +171,6 @@
 
 
 
-	
-
-
-	<?php 
-	}
-		else{
-			header('location: ./login.php');
-		}
-	?>
 
 
 
@@ -206,15 +205,13 @@
 			{
 				if($d['id']==$_SESSION['user']['id'])
 					continue;
-				echo '<div class="p-3 border m-2"><a href="'.$_SERVER['PHP_SELF'].'?rec='.$d[username].'">'.$d[username].'</a></div>';
+				echo '<div class="p-3 border m-2"><a href="'.$_SERVER['PHP_SELF'].'?rec='.$d['username'].'">'.$d['username'].'</a></div>';
 			}
 		}
 		else
 		{
 			echo 'Some Error Occured!';
 		}
-
-
 	}
 
 
