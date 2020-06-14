@@ -2,6 +2,19 @@
 	require_once("./includes/config.php");
 
 
+
+	//Chatbox
+
+
+
+	//EndChatbox
+
+
+
+
+
+
+
 	if(!isset($_SESSION['user']))
 	{
 		header('location: login.php');
@@ -25,18 +38,6 @@
 		}else{
 			$arr = [$uid, $toid]; 
 			sort($arr);
-			//Sending Message
-			if(isset($_POST['message_submit']) && !empty($_POST['chatMessage']))
-			{
-				
-				unset($_POST['message_submit']);
-				$chatfile = fopen(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt", 'a');
-				$chatMessage = str_replace("}}:{{", " ", sanitizeString($_POST['chatMessage']));
-				fwrite($chatfile, ''.$uid.'}}:{{'.$chatMessage.''."\r\n");
-				fclose($chatfile);
-				header('location: '.$_SERVER['PHP_SELF'].'?rec='.sanitizeString($_GET['rec']));
-				exit();
-			}
 		}
 	}
 
@@ -144,7 +145,7 @@
 							}
 							else
 							{
-								echo '<div class="w-100 h-100 bg-danger text-center">To Chat, search and select a username</div>';
+								echo '<div class="w-100 h-100 bg-danger text-center">To Chat, search and select a Username</div>';
 							}
 								
 
@@ -153,13 +154,15 @@
 						</div>
 
 						
-						<form id="chatform" autocomplete="off" method="POST">
-							<fieldset <?php echo (!isset($toid)?'disabled':'');?>>
+						<form id="chatform" autocomplete="off" action="api/talk_api.php" method="POST">
+							<fieldset<?php echo (!isset($toid)?' disabled':'');?>>
 							<div class="form-group">
 								<label for="chatMessage"></label>
 								<input type="text" class="form-control" placeholder="Write Your Message" name="chatMessage" required>
+								<input type="number" name="toid" value="<?=$toid?>" hidden>
+								<input type="number" name="uid" value="<?=$uid?>" hidden>
 							</div>
-							<button type="submit" name="message_submit" class="btn btn-theme">Submit</button>
+							<button type="submit" id="send_message" name="message_submit" class="btn btn-theme">Send</button>
 							</fieldset>
 						</form>
 						
@@ -177,14 +180,53 @@
 	<?php require_once("./includes/footer.php");?>
 
 	<script>
+
+
+
+
 		$(document).ready(()=>{
+
+			$('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+
+			$("#send_message").click(function (event) {
+		        event.preventDefault();
+
+		        if($('input[name=chatMessage]').val() == '')
+		        	return false;
+
+		        $('button[name=message_submit]').attr('disabled', true);
+				$('button[name=message_submit]').html('Sending...');
+
+				
+		        var form = $('#chatform').serialize() + '&ajx=true';
+		        
+		        $.ajax({
+		        	type: "POST",
+		        	url: "api/talk_api.php",
+		        	data: form,
+		        	cache: false,
+
+		        	success: function(ans){
+		        		if(ans=="Success")
+		        			$('#chatbox').append('<div class="m-3 p-2 rounded bg-primary text-right"><div class="">'+$('input[name=chatMessage]').val()+'</div><small class="blockquote-footer text-warning">You</small></div>');
+		        		$('input[name=chatMessage]').val('');
+		        	},
+
+		        	complete: function(){
+		       			$('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+		       			$('button[name=message_submit]').attr('disabled', false);
+				 		$('button[name=message_submit]').html('Send');
+		        	}		        	
+		        });
+		        return false;
+		    });
 			
-			setInterval(() => {
-				$("#chatbox").load(location.href + " #chatbox");						
-			}, 2000);
-			$('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);			
 			
+
 		});
+
+
+
 
 	
 	</script>
@@ -241,6 +283,6 @@
 		?>
 	<?php
 	}
-
-
 ?>
+
+
