@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
         exit();
     }
    
-    if($uid != $_SESSION['user']['id'] && empty($toid))
+    if(($uid != $_SESSION['user']['id'] && empty($toid)) || empty(trim($_POST['chatMessage'])))
     {
        echo 'Bad Request';
        http_response_code(400);
@@ -37,13 +37,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
    
     $arr = [$_POST['toid'], $_POST['uid']];
     sort($arr);
-
+    $tm = time();
+    $time = new DateTime("@$tm");
     $chatfile = fopen(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt", 'a');
-    $chatMessage = str_replace("}}:{{", " ", sanitizeString($_POST['chatMessage']));
-    if(fwrite($chatfile, ''.$uid.'}}:{{'.$chatMessage.''."\r\n"))
+    $chatMessage = str_replace("}}:{{", " ", sanitizeString(trim($_POST['chatMessage'])));
+    if(fwrite($chatfile, ''.$uid.'}}:{{'.$chatMessage.'}}:{{'.$tm."\r\n"))
     {
         fclose($chatfile);
-        echo 'Success';
+        
+        echo '<div class="m-3 p-2 rounded bg-primary text-right">
+            <div class="">'.$chatMessage.'</div>
+            <small class="blockquote-footer text-warning">You</small>
+            <small class="text-warning">'.$time->format('d-M-Y h:m A').'</small>
+        </div>';
+
+
+
         http_response_code(200);
         if(!isset($_POST['ajx']))
             header('location: //'.SITE_NAME.'/talk.php'.'?rec='.$rec);

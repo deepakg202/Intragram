@@ -121,7 +121,8 @@
 										$messageArr = explode('}}:{{', $line);
 										$author = $messageArr[0];
 										$message = $messageArr[1];
-										
+										$time = new DateTime("@$messageArr[2]");
+
 										if($author==$uid)
 										{
 											$bg = 'bg-primary text-right';
@@ -134,6 +135,7 @@
 										echo '<div class="m-3 p-2 rounded '.$bg.'">
 												<div class="">'.$message.'</div>
 												<small class="blockquote-footer text-warning">'.$aname.'</small>
+												<small class="text-warning">'.$time->format('d-M-Y h:m A').'</small>
 											</div>';
 									}
 									fclose($chatfile);
@@ -188,10 +190,10 @@
 
 			$('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
 
-			$("#send_message").click(function (event) {
+			$("#chatform").on("submit", function (event) {
 		        event.preventDefault();
 
-		        if($('input[name=chatMessage]').val() == '')
+		        if($('input[name=chatMessage]').val().trim() == '')
 		        	return false;
 
 		        $('button[name=message_submit]').attr('disabled', true);
@@ -207,8 +209,8 @@
 		        	cache: false,
 
 		        	success: function(ans){
-		        		if(ans=="Success")
-		        			$('#chatbox').append('<div class="m-3 p-2 rounded bg-primary text-right"><div class="">'+$('input[name=chatMessage]').val()+'</div><small class="blockquote-footer text-warning">You</small></div>');
+
+		        			$('#chatbox').append(ans);
 		        		$('input[name=chatMessage]').val('');
 		        	},
 
