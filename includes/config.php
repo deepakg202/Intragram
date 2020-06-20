@@ -220,4 +220,49 @@
     <?php
     }
 
+
+
+function line2mess($line, $uid, $toid)
+{
+    if(!isset($_SESSION['user']))
+        return;
+
+    if($_SESSION['user']['id'] != $uid)
+        return;
+
+
+
+
+    $messageArr = explode('}}:{{', $line);
+    $author = $messageArr[0];
+    $message = $messageArr[1];
+    $time = new DateTime("@$messageArr[2]");
+
+
+    if(!isset($rname))
+    {
+        $rname = getDBconn()->query("SELECT name FROM users WHERE id='$toid'")->fetchColumn();
+    }
+
+    if($author==$uid)
+    {
+        $bg = 'bg-primary text-right';
+        $aname = 'You';
+    }else{
+        $bg = 'bg-dark text-left';
+        $aname = $rname;
+    }
+
+    return '<div class="m-3 p-2 rounded '.$bg.'">
+            <div class="">'.$message.'</div>
+            <small class="blockquote-footer text-warning">'.$aname.'</small>
+            <small class="text-warning">'.$time->format('d-M-Y h:m A').'</small>
+        </div>';    
+}
+
+
+
+
+
+
 ?>

@@ -3,18 +3,14 @@
 require_once('../includes/config.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
    
-    $toid = sanitizeString($_POST['toid']);
-    $uid = sanitizeString($_POST['uid']);
+    $toid = (int)sanitizeString($_POST['toid']);
+    $uid = (int)sanitizeString($_POST['uid']);
     
     $toName = getDBconn()->prepare('SELECT username FROM users WHERE id=?');
 
     if($toName->execute([$toid]))
     {
-        if(!empty($rec = $toName->fetchColumn()))
-        {
-
-        }
-        else
+        if(empty($rec = $toName->fetchColumn()))
         {
             echo 'Bad Request';
             http_response_code(400);
@@ -35,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user'])) {
        exit();
     }
    
-    $arr = [$_POST['toid'], $_POST['uid']];
+    $arr = [$toid, $uid];
     sort($arr);
     $tm = time();
     $time = new DateTime("@$tm");

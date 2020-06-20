@@ -3,17 +3,6 @@
 
 
 
-	//Chatbox
-
-
-
-	//EndChatbox
-
-
-
-
-
-
 
 	if(!isset($_SESSION['user']))
 	{
@@ -42,8 +31,6 @@
 	}
 
 	
-// Sending Messages
-		
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -84,7 +71,8 @@
 							</div>
 
 							<div id="searchedUsers" class="m-3 overflow-auto">
-								<?php 
+								<?php
+								
 								if(isset($_GET['searchUser_submit']) && !empty($_GET['searchUser']))
 								{		
 									$term = sanitizeString($_GET['searchUser']);
@@ -112,31 +100,12 @@
 							// Viewing Chatbox
 							if(isset($toid))
 							{
-							
 								if(file_exists(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt"))
 								{		
 									$chatfile = fopen(ROOT_PATH."/chats/".$arr[0]."_".$arr[1].".txt", 'r');								
 									while ($line = fgets($chatfile, 1024)) 
-									{ 						
-										$messageArr = explode('}}:{{', $line);
-										$author = $messageArr[0];
-										$message = $messageArr[1];
-										$time = new DateTime("@$messageArr[2]");
-
-										if($author==$uid)
-										{
-											$bg = 'bg-primary text-right';
-											$aname = 'You';
-										}else{
-											$aname = getDBconn()->query("SELECT name FROM users WHERE id='$author'")->fetchColumn();
-											$bg = 'bg-dark text-left';
-						
-										}
-										echo '<div class="m-3 p-2 rounded '.$bg.'">
-												<div class="">'.$message.'</div>
-												<small class="blockquote-footer text-warning">'.$aname.'</small>
-												<small class="text-warning">'.$time->format('d-M-Y h:m A').'</small>
-											</div>';
+									{ 		
+										echo line2mess($line, $uid, $toid);				
 									}
 									fclose($chatfile);
 
@@ -183,9 +152,6 @@
 
 	<script>
 
-
-
-
 		$(document).ready(()=>{
 
 			$('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
@@ -209,8 +175,6 @@
 		        	cache: false,
 
 		        	success: function(ans){
-
-		        			$('#chatbox').append(ans);
 		        		$('input[name=chatMessage]').val('');
 		        	},
 
@@ -223,14 +187,40 @@
 		        return false;
 		    });
 			
-			
-
 		});
 
+<?php
+function chatListener($toid, $uid)
+{?>
+	var tmp="";
+		setInterval(()=>{
+			d = {toid:<?=$toid?>, uid: <?=$uid?>};
+			$.ajax({
+        	type: "POST",
+        	url: "api/chatbox_api.php",
+        	data : d,
+        	success: function(ans){
+        		console.log(ans);
+        		if(ans != tmp && tmp != "")
+		      	{
+		      		$('#chatbox').append(ans);
+		      		$('#chatbox').scrollTop($('#chatbox')[0].scrollHeight);
+		      	}
+        		tmp = ans;
+        	}	        	
+        });
+
+		}, 500);
 
 
+<?php
+}?>
 
-	
+		<?php
+		if(!empty($toid))
+			chatListener($toid, $uid);
+		?>
+
 	</script>
 </body>
 
