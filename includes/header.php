@@ -21,10 +21,10 @@
 			        <span class="d-none d-md-inline pl-1"> Hi, <?php echo $fname;?></span>
 			    </a></li>
 
-			    <li class="nav-item"><a href="./talk.php" class="nav-link">
+			    <!-- <li class="nav-item"><a href="./talk.php" class="nav-link">
 					<i class="fa fa-envelope fa-2x fa-fw" data-toggle="tooltip" title="Messages"></i>
 			        <span class="d-none d-md-inline">Messages</span>
-			    </a></li>
+			    </a></li> -->
 
 			    <li class="nav-item"><a href="./logout.php" class="nav-link">
 					<i class="fa fa-sign-out fa-2x fa-fw" data-toggle="tooltip" title="Log Out"></i>

@@ -1,34 +1,34 @@
 # IntraGram 
 ---
-##### This is a simple blogging site especially made to share resources in a local network. It can also be modified to work without storing any files in its own server.
+##### This is a simple blogging site. It can also be modified to work without storing any files in its own server.
 
 
-##### Works well without javascript except few things like the Markdown Editor, chats.
+##### Works well without javascript except the Markdown Editor.
 ======
 ---
 #### It consists or should consist :
    - [ ] Blog
         - [x] Markdown Editor
+        - [x] Storing Files on server (Using a specific format to store blog content, comments and other info in a file)
         - [x] Pagination of Blog or Lazy Loading (Pagination)
         - [x] Imgur Uploading and Fetching link
         - [x] Delete Posts 
         - [ ] Edit Post
         - [ ] Report Post
-        - [ ] Functional Buttons for Like, Save And Comment (Currently Permanent Comments)
+        - [ ] Like, Save And Comment Functionality (Currently Permanent Comments)
         - [ ] Admin Verification For Posts
-        - [x] Profile Page
-   - [ ] Storing Files
-        - [ ] Categorizically add files 
-   - [ ] Chatting System
+        - [x] Profile Page (basic)
+        <!-- - [ ] Categorizically add files  -->
+   <!-- - [ ] Chatting System
         - [ ] Video Conferencing
-        - [ ] Chats
+        - [ ] Chats -->
    - [ ] All Round
         - [x] Edit Profile(But can't change password)
         - [ ] Form Validation
-        - [ ] Google Login (Optional)
-        - [ ] Notifications
-        - [ ] Feedback Form
-        - [ ] Custom Error Pages with quotes
+        <!-- - [ ] Google Login (Optional) -->
+        - [ ] Notifications and Chats
+        <!-- - [ ] Feedback Form -->
+        <!-- - [ ] Custom Error Pages with quotes -->
         
          
 
